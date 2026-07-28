@@ -1,13 +1,5 @@
 require("dotenv").config();
 
-process.on("uncaughtException", (err) => {
-  console.error(err.message);
-  process.exit(1);
-});
-process.on("unhandledRejection", (reason) => {
-  console.error(reason);
-});
-
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
@@ -35,7 +27,7 @@ app.get("/api/health", (_req, res) => res.json({ ok: true }));
 
 if (isProduction) {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
-  app.get("/*", (_req, res) => {
+  app.use((_req, res) => {
     res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"));
   });
 }
