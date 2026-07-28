@@ -32,4 +32,12 @@ if (isProduction) {
   });
 }
 
+process.on("uncaughtException", (err) => {
+  console.error("UNCAUGHT:", err.message, err.stack);
+  process.exit(1);
+});
+process.on("unhandledRejection", (reason) => {
+  console.error("UNHANDLED:", reason);
+});
+
 app.listen(PORT, () => console.log(`Backend corriendo en puerto ${PORT}`));
