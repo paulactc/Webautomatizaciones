@@ -2,7 +2,6 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "react-router";
 import { Particles } from "../components/magicui/particles.jsx";
 import { BlurFade } from "../components/magicui/blur-fade.jsx";
-import { ShimmerButton } from "../components/magicui/shimmer-button.jsx";
 import WhatsAppIcon from "../components/icons/WhatsAppIcon.jsx";
 import SectorTabs from "../components/SectorTabs.jsx";
 import Pricing from "../components/Pricing.jsx";
@@ -64,17 +63,10 @@ export default function Home() {
                 target="_blank"
                 rel="noreferrer"
               >
-                <ShimmerButton
-                  shimmerColor="#ffffff"
-                  shimmerSize="0.05em"
-                  shimmerDuration="3s"
-                  borderRadius="8px"
-                  background="#c4652a"
-                  className="hero__shimmer-btn"
-                >
+                <span className="btn btn--primary btn--wa">
                   <WhatsAppIcon size={20} />
                   Quiero mi automatización
-                </ShimmerButton>
+                </span>
               </a>
               <a href="#planes" className="btn btn--outline">
                 Ver planes <ArrowRight size={16} strokeWidth={2.5} />
@@ -137,16 +129,10 @@ export default function Home() {
             target="_blank"
             rel="noreferrer"
           >
-            <ShimmerButton
-              shimmerColor="#ffffff"
-              shimmerSize="0.05em"
-              shimmerDuration="3s"
-              borderRadius="8px"
-              background="#c4652a"
-            >
+            <span className="btn btn--primary btn--wa">
               <WhatsAppIcon size={20} />
               Quiero mi automatización
-            </ShimmerButton>
+            </span>
           </a>
         </div>
       </section>

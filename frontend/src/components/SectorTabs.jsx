@@ -59,7 +59,7 @@ export default function SectorTabs() {
   const current = sectors.find((s) => s.id === active);
 
   return (
-    <section className="page-section" id="sectores">
+    <section className="page-section" id="sectores" style={{ scrollMarginTop: 80 }}>
       <div className="container">
         <h2 className="section-title">Automatizaciones reales para cada sector</h2>
         <p className="section-subtitle">

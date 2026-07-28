@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 import { Menu, X } from "lucide-react";
 
 const links = [
@@ -12,27 +12,40 @@ const links = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  function isActive(to) {
+    const [path] = to.split("#");
+    return location.pathname === (path || "/");
+  }
+
+  function handleClick(to) {
+    setOpen(false);
+    const [path, hash] = to.split("#");
+    if (hash && location.pathname === (path || "/")) {
+      const el = document.getElementById(hash);
+      if (el) return void el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    navigate(to);
+  }
 
   return (
     <header className="navbar">
-      <NavLink to="/" className="navbar__brand">
+      <a href="/" className="navbar__brand" onClick={(e) => { e.preventDefault(); navigate("/"); }}>
         <span className="navbar__logo">Paula Castillo</span>
         <span className="navbar__tagline">Automatización con IA</span>
-      </NavLink>
+      </a>
 
       <nav className={`navbar__nav ${open ? "navbar__nav--open" : ""}`}>
         {links.map(({ to, label }) => (
-          <NavLink
+          <button
             key={to}
-            to={to}
-            end={to === "/"}
-            className={({ isActive }) =>
-              `navbar__link ${isActive ? "navbar__link--active" : ""}`
-            }
-            onClick={() => setOpen(false)}
+            onClick={() => handleClick(to)}
+            className={`navbar__link${isActive(to) ? " navbar__link--active" : ""}`}
           >
             {label}
-          </NavLink>
+          </button>
         ))}
       </nav>
 

@@ -41,7 +41,7 @@ const plans = [
 
 export default function Pricing() {
   return (
-    <section className="page-section pricing-section" id="planes">
+    <section className="page-section pricing-section" id="planes" style={{ scrollMarginTop: 80 }}>
       <div className="container">
         <h2 className="section-title">Planes y precios</h2>
         <p className="section-subtitle">
