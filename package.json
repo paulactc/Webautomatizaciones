@@ -2,7 +2,7 @@
   "name": "miportfolio",
   "version": "1.0.0",
   "scripts": {
-    "build": "cd frontend && npm install && npm run build",
+    "build": "cd frontend && npm install --include=dev && npm run build",
     "start": "cd backend && npm install && node server.js",
     "install:all": "cd frontend && npm install && cd ../backend && npm install"
   },
