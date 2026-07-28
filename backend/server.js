@@ -27,7 +27,8 @@ app.get("/api/health", (_req, res) => res.json({ ok: true }));
 
 if (isProduction) {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
-  app.use((_req, res) => {
+  app.use((req, res, next) => {
+    if (req.method !== "GET") return next();
     res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"));
   });
 }

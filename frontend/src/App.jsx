@@ -6,6 +6,7 @@ import ChatWidget from "./components/ChatWidget.jsx";
 import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
 import Contact from "./pages/Contact.jsx";
+import Projects from "./pages/Projects.jsx";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/sobre-mi" element={<About />} />
+          <Route path="/proyectos" element={<Projects />} />
           <Route path="/contacto" element={<Contact />} />
         </Routes>
       </main>

@@ -5,7 +5,7 @@ import WhatsAppIcon from "../components/icons/WhatsAppIcon.jsx";
 const WA_NUMBER = "34722439479";
 const WA_TEXT = encodeURIComponent("Hola, me interesa automatizar mi negocio. ¿Me puedes informar?");
 
-const INITIAL = { name: "", business: "", phone: "", automate: "" };
+const INITIAL = { name: "", email: "", business: "", phone: "", automate: "" };
 
 export default function Contact() {
   const [form, setForm] = useState(INITIAL);
@@ -18,11 +18,13 @@ export default function Contact() {
   async function handleSubmit(e) {
     e.preventDefault();
     setStatus("loading");
+    const message =
+      `Negocio: ${form.business}\nTeléfono: ${form.phone}\nQuiere automatizar: ${form.automate}`;
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, topic: "automatizacion" }),
+        body: JSON.stringify({ name: form.name, email: form.email, message }),
       });
       if (!res.ok) throw new Error();
       setStatus("success");
@@ -87,6 +89,18 @@ export default function Contact() {
                 />
               </div>
               <div className="form-group">
+                <label htmlFor="email">Email</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  value={form.email}
+                  onChange={handleChange}
+                  placeholder="Tu email"
+                />
+              </div>
+              <div className="form-group">
                 <label htmlFor="phone">Teléfono</label>
                 <input
                   id="phone"
@@ -100,14 +114,14 @@ export default function Contact() {
               </div>
               <div className="form-group">
                 <label htmlFor="automate">¿Qué quieres automatizar?</label>
-                <input
+                <textarea
                   id="automate"
                   name="automate"
-                  type="text"
                   required
                   value={form.automate}
                   onChange={handleChange}
-                  placeholder="Ej: citas, respuestas, presupuestos..."
+                  placeholder="Ej: Gestión de citas, respuestas automáticas en WhatsApp, CRM..."
+                  rows={3}
                 />
               </div>
               {status === "error" && (
