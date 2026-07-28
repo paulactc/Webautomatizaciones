@@ -1,3 +1,11 @@
+import { CheckCircle2 } from "lucide-react";
+
+const highlights = [
+  "Clientes, citas y mensajes en un solo panel",
+  "Estados de cada servicio en tiempo real",
+  "Informes de facturación mensual automatizados",
+];
+
 export default function CrmShowcase() {
   return (
     <section className="crm-showcase">
@@ -15,6 +23,14 @@ export default function CrmShowcase() {
             className="crm-showcase__img"
           />
         </div>
+        <ul className="crm-showcase__highlights">
+          {highlights.map((h) => (
+            <li key={h}>
+              <CheckCircle2 size={18} strokeWidth={2} />
+              {h}
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
