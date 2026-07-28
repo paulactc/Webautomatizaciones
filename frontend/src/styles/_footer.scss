@@ -1,0 +1,27 @@
+@use "variables" as *;
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+  border-top: 1px solid $border;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  &__copy {
+    font-size: 0.85rem;
+    color: $text-muted;
+  }
+
+  &__links {
+    display: flex;
+    gap: 1.25rem;
+
+    a {
+      color: $text-muted;
+      transition: color 0.2s;
+      &:hover { color: $accent; }
+    }
+  }
+}

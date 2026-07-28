@@ -1,0 +1,366 @@
+@use "sass:color";
+@use "variables" as *;
+
+// ── Projects section wrapper ──────────────────────────────────────────────────
+
+.projects-section {
+  padding: 5rem 0 6rem;
+
+  &__heading {
+    font-size: clamp(3rem, 11vw, 10rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: -4px;
+    line-height: 1;
+    color: $text;
+    margin-bottom: 4rem;
+  }
+
+  &__stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+// ── Project card (pcard) ──────────────────────────────────────────────────────
+
+.pcard {
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: 28px;
+  padding: 2rem 2rem 0;
+  overflow: hidden;
+  transition: box-shadow 0.3s;
+  position: relative;
+
+  // Tira de color diferente por proyecto
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    border-radius: 28px 28px 0 0;
+  }
+  &:nth-child(1)::before { background: $accent; }
+  &:nth-child(2)::before { background: $accent-2; }
+  &:nth-child(3)::before { background: $accent-warm; }
+
+  // Número de color diferente por proyecto
+  &:nth-child(1) .pcard__number { color: $accent; }
+  &:nth-child(2) .pcard__number { color: $accent-2; }
+  &:nth-child(3) .pcard__number { color: $accent-warm; }
+
+  // Check color diferente por proyecto
+  &:nth-child(1) .pcard__check { color: $accent; }
+  &:nth-child(2) .pcard__check { color: $accent-2; }
+  &:nth-child(3) .pcard__check { color: $accent-warm; }
+
+  &:hover {
+    box-shadow: 0 12px 40px rgba($accent, 0.08);
+  }
+
+  // ── Header row ──────────────────────────────────────────────────────────────
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-bottom: 1.75rem;
+    flex-wrap: wrap;
+  }
+
+  &__header-left {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+  }
+
+  &__number {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    letter-spacing: -2px;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: $text-muted;
+  }
+
+  &__header-right {
+    flex: 1;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  &__category {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: $text-muted;
+  }
+
+  &__name {
+    font-size: clamp(1rem, 2vw, 1.6rem);
+    font-weight: 700;
+    color: $text;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+  }
+
+  &__link-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    border: 1.5px solid $border;
+    color: $text-muted;
+    flex-shrink: 0;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+
+    &:hover {
+      border-color: $accent;
+      color: $accent;
+      background: rgba($accent, 0.06);
+    }
+  }
+
+  // ── Content grid 4 + 6 ──────────────────────────────────────────────────────
+  &__grid {
+    display: grid;
+    grid-template-columns: 4fr 6fr;
+    gap: 1.75rem;
+    align-items: stretch;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  // Left column: project info
+  &__col-left {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 2rem;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    flex: 1;
+  }
+
+  &__tagline {
+    font-size: 1rem;
+    font-weight: 700;
+    color: $text;
+    line-height: 1.3;
+  }
+
+  &__desc {
+    font-size: 0.88rem;
+    color: $text-muted;
+    line-height: 1.75;
+  }
+
+  &__highlights {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0.25rem 0;
+  }
+
+  &__highlight-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.83rem;
+    color: $text-muted;
+    line-height: 1.5;
+  }
+
+  &__check {
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding-top: 0.75rem;
+  }
+
+  &__visit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 1.25rem;
+    padding: 0.65rem 1.4rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    background: $accent;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    text-decoration: none;
+    align-self: flex-start;
+
+    &:hover {
+      background: $accent-dark;
+      transform: translateY(-1px);
+    }
+  }
+
+  &:nth-child(2) .pcard__visit-btn {
+    background: $accent-2;
+    &:hover { background: color.adjust($accent-2, $lightness: -10%); }
+  }
+
+  &:nth-child(3) .pcard__visit-btn {
+    background: $accent-warm;
+    color: $text;
+    &:hover { background: color.adjust($accent-warm, $lightness: -10%); }
+  }
+
+  // Right column: image
+  &__col-right {
+    border-radius: 20px 20px 0 0;
+    overflow: hidden;
+    min-height: 340px;
+    align-self: stretch;
+  }
+
+  &__img-wrap {
+    height: 100%;
+    min-height: 340px;
+    overflow: hidden;
+    border-radius: 20px 20px 0 0;
+    background: $surface-2;
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    transition: transform 0.5s ease;
+
+    &:hover {
+      transform: scale(1.04);
+    }
+  }
+
+  &__img-placeholder {
+    height: 100%;
+    min-height: 340px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, $accent-light, color.adjust($accent-light, $lightness: -6%));
+    border-radius: 20px 20px 0 0;
+
+    span {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: $accent-dark;
+      padding: 0.4rem 1rem;
+      border: 1px solid rgba($accent-warm, 0.5);
+      border-radius: 20px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 1.5rem 1.5rem 0;
+
+    &__col-left { padding-bottom: 1.5rem; }
+
+    &__col-right,
+    &__img-wrap,
+    &__img-placeholder {
+      min-height: 240px;
+    }
+  }
+}
+
+// ── Legacy project-card (kept for compatibility) ──────────────────────────────
+
+.project-card {
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s, transform 0.2s;
+
+  &:hover {
+    border-color: $accent;
+    transform: translateY(-3px);
+  }
+
+  &__img {
+    height: 180px;
+    overflow: hidden;
+    background: $surface-2;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__body {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  &__title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: $text;
+  }
+
+  &__desc {
+    font-size: 0.88rem;
+    color: $text-muted;
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  &__links {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+}
+
+// Old cases-stack (can be removed later)
+.cases-stack { display: flex; flex-direction: column; gap: 2.5rem; }

@@ -1,0 +1,116 @@
+@use "variables" as *;
+
+.hero {
+  min-height: calc(100vh - 65px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, $bg 0%, rgba($accent-light, 0.3) 50%, $bg 100%);
+
+  &__particles {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  &__content {
+    max-width: 720px;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__photo {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid $accent-light;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 20px rgba($accent-dark, 0.12);
+  }
+
+  &__name {
+    font-size: 0.95rem;
+    color: $accent;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    margin-bottom: 1.2rem;
+    color: $text;
+  }
+
+  &__subtitle {
+    font-size: 1.05rem;
+    color: $text-muted;
+    max-width: 540px;
+    margin: 0 auto 1.5rem;
+    line-height: 1.7;
+  }
+
+  &__pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  &__pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.55rem 1.1rem;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1.5px solid rgba($accent, 0.25);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: $accent-dark;
+    letter-spacing: 0.2px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 2px 8px rgba($accent, 0.08);
+  }
+
+  &__actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  &__shimmer-btn {
+    padding: 0.85rem 2rem !important;
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    font-family: inherit !important;
+    gap: 0.6rem !important;
+    min-width: 260px !important;
+  }
+
+  &__scroll {
+    position: absolute;
+    bottom: 2rem;
+    color: $text-muted;
+    animation: bounce 2s infinite;
+    &:hover { color: $accent; }
+  }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}

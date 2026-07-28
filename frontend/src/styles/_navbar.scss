@@ -1,0 +1,80 @@
+@use "variables" as *;
+
+.navbar {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 100 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 1rem 2rem !important;
+  background: rgba($bg, 0.9) !important;
+  backdrop-filter: blur(12px) !important;
+  border-bottom: 1px solid $border !important;
+
+  &__brand {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    line-height: 1.2;
+  }
+
+  &__logo {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: $text;
+    letter-spacing: -0.3px;
+    &:hover { color: $accent; }
+  }
+
+  &__tagline {
+    font-size: 0.7rem;
+    color: $text-muted;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+
+  &__nav {
+    display: flex;
+    gap: 2rem;
+  }
+
+  &__link {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: $text-muted;
+    transition: color 0.2s;
+
+    &:hover,
+    &--active { color: $text; }
+
+    &--active { color: $accent; }
+  }
+
+  &__toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: $text;
+    cursor: pointer;
+  }
+
+  @media (max-width: 640px) {
+    &__toggle { display: flex; }
+
+    &__nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      background: $surface;
+      border-bottom: 1px solid $border;
+      padding: 1.5rem 2rem;
+      gap: 1.2rem;
+
+      &--open { display: flex; }
+    }
+  }
+}

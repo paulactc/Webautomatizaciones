@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@theme {
+  --color-accent: #c4652a;
+  --color-accent-2: #e8915a;
+  --color-accent-warm: #d4a574;
+  --color-accent-light: #f0e4d4;
+  --color-accent-dark: #9e4f1e;
+  --color-surface: #ffffff;
+  --color-surface-2: #f0ebe3;
+  --color-bg: #faf6f1;
+  --color-text: #2c2420;
+  --color-text-muted: #7a6b5d;
+  --color-border: #e0d6ca;
+}
+
+@layer utilities {
+  .animate-shimmer-slide {
+    animation: shimmer-slide 3s linear infinite;
+  }
+
+  .animate-spin-around {
+    animation: spin-around calc(var(--speed) * 2) infinite linear;
+  }
+}
+
+@keyframes shimmer-slide {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes spin-around {
+  0% {
+    transform: translateZ(0) rotate(0);
+  }
+  100% {
+    transform: translateZ(0) rotate(360deg);
+  }
+}

@@ -1,0 +1,152 @@
+@use "sass:color";
+@use "variables" as *;
+
+.contact__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  label {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: $text-muted;
+  }
+
+  input,
+  textarea {
+    background: $surface;
+    border: 1px solid $border;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    color: $text;
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: border-color 0.2s;
+    resize: vertical;
+
+    &::placeholder { color: color.adjust($text-muted, $lightness: -15%); }
+
+    &:focus {
+      outline: none;
+      border-color: $accent;
+    }
+  }
+}
+
+.contact__success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 3rem;
+  text-align: center;
+  color: $accent;
+  font-size: 1.1rem;
+}
+
+.contact__error {
+  color: #f87171;
+  font-size: 0.88rem;
+}
+
+.contact__wa-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 12px;
+  background: #25d366;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: background 0.2s, transform 0.15s;
+  margin-bottom: 1.5rem;
+
+  &:hover {
+    background: #1daa55;
+    transform: translateY(-1px);
+  }
+}
+
+.contact__divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  color: $text-muted;
+  font-size: 0.85rem;
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: $border;
+  }
+}
+
+.contact__topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1.75rem;
+}
+
+.contact__topic-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 30px;
+  border: 1.5px solid $border;
+  background: $surface;
+  color: $text-muted;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+
+  &:hover {
+    border-color: $accent;
+    color: $accent;
+  }
+
+  &--active {
+    border-color: $accent;
+    background: $accent;
+    color: #fff;
+
+    &:hover {
+      background: $accent-dark;
+      border-color: $accent-dark;
+      color: #fff;
+    }
+  }
+}
+
+.contact__form-footer {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.contact__guarantee {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  color: $text-muted;
+  font-weight: 500;
+
+  svg { color: $accent; flex-shrink: 0; }
+}
