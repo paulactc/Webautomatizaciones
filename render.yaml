@@ -8,7 +8,10 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
+      # ⚠️  Las siguientes variables deben configurarse manualmente en Render Dashboard
       - key: OMNIROUTE_URL
+        sync: false
+      - key: OMNIROUTE_API_KEY
         sync: false
       - key: SMTP_HOST
         sync: false

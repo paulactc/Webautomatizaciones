@@ -53,7 +53,7 @@ export default function About() {
             <div className="about__contact-info">
               <a href="mailto:paula_ctc@hotmail.es" className="about__detail about__detail--link">
                 <Mail size={16} strokeWidth={1.5} />
-                paula_ctc@hotmail.es
+paulact39@gmail.com
               </a>
               <a href="tel:722439479" className="about__detail about__detail--link">
                 <Phone size={16} strokeWidth={1.5} />

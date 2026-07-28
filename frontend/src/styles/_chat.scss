@@ -3,11 +3,11 @@
 .chat-widget {
   position: fixed !important;
   bottom: 2.5rem !important;
-  right: 1.5rem !important;
+  left: 1.5rem !important;
   z-index: 1000 !important;
   display: flex !important;
   flex-direction: column !important;
-  align-items: flex-end !important;
+  align-items: flex-start !important;
   gap: 0.75rem !important;
 
   &__fab {

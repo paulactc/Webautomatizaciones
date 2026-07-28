@@ -65,12 +65,23 @@ async function handleChat(req, res) {
     return res.status(400).json({ error: "messages requerido" });
   }
 
+  if (!process.env.OMNIROUTE_URL) {
+    console.warn("OMNIROUTE_URL no configurado");
+    return res.status(502).json({
+      reply: "Lo siento, el servicio de IA no está disponible en este momento. Escríbeme a paula_ctc@hotmail.es o por WhatsApp y te atiendo personalmente.",
+      leadCaptured: false,
+    });
+  }
+
   try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
+
     const response = await fetch(`${OMNIROUTE_URL}/chat/completions`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer omniroute",
+        Authorization: `Bearer ${process.env.OMNIROUTE_API_KEY || "omniroute"}`,
       },
       body: JSON.stringify({
         model: "auto/best-free",
@@ -78,12 +89,17 @@ async function handleChat(req, res) {
         max_tokens: 350,
         stream: false,
       }),
+      signal: controller.signal,
     });
+    clearTimeout(timeout);
 
     if (!response.ok) {
       const err = await response.text();
       console.error("OmniRoute error:", err);
-      return res.status(502).json({ error: "Error en el servicio de IA" });
+      return res.status(502).json({
+        reply: "El servicio de IA está temporalmente fuera de servicio. Inténtalo de nuevo más tarde o contáctame directamente.",
+        leadCaptured: false,
+      });
     }
 
     const data = await response.json();
@@ -92,13 +108,20 @@ async function handleChat(req, res) {
     const { lead, clean } = extractLead(raw);
 
     if (lead) {
-      sendLeadEmail(lead).catch((err) => console.error("Error enviando lead:", err));
+      if (!transporter) {
+        console.warn("SMTP no configurado — lead capturado pero no notificado por email");
+      } else {
+        sendLeadEmail(lead).catch((err) => console.error("Error enviando lead:", err));
+      }
     }
 
     res.json({ reply: clean, leadCaptured: !!lead });
   } catch (err) {
     console.error("Chat error:", err);
-    res.status(500).json({ error: "Error interno del servidor" });
+    const msg = err.name === "AbortError"
+      ? "El servicio de IA tardó demasiado en responder. Inténtalo de nuevo."
+      : "Error de conexión con el servicio de IA. Inténtalo de nuevo.";
+    res.status(502).json({ reply: msg, leadCaptured: false });
   }
 }
 

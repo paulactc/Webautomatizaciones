@@ -9,7 +9,9 @@ router.post(
   [
     body("name").trim().notEmpty().withMessage("Nombre requerido"),
     body("email").isEmail().withMessage("Email no válido"),
-    body("message").trim().isLength({ min: 10 }).withMessage("Mensaje demasiado corto"),
+    body("business").trim().notEmpty().withMessage("Nombre del negocio requerido"),
+    body("phone").trim().notEmpty().withMessage("Teléfono requerido"),
+    body("message").trim().notEmpty().withMessage("Indica qué quieres automatizar"),
   ],
   (req, res, next) => {
     const errors = validationResult(req);

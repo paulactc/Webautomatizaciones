@@ -573,7 +573,7 @@
 }
 
 .crm-showcase__frame {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   border-radius: 16px;
   overflow: hidden;
@@ -590,6 +590,8 @@
 .crm-showcase__img {
   width: 100%;
   display: block;
+  transform: scale(1.15);
+  transform-origin: top center;
 }
 
 .crm-showcase__highlights {

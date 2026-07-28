@@ -5,7 +5,8 @@ const WELCOME =
   "¡Hola! Soy el asistente de Paula. Pregúntame sobre sus servicios, proyectos o cómo contactarla.";
 
 function renderText(text) {
-  return text.split("\n").map((line, li, arr) => (
+  if (!text) return null;
+  return String(text).split("\n").map((line, li, arr) => (
     <span key={li}>
       {line.split(/(\*\*[^*]+\*\*)/g).map((part, pi) =>
         part.startsWith("**") && part.endsWith("**") ? (

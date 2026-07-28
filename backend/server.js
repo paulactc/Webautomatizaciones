@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3001;
 const isProduction = process.env.NODE_ENV === "production";
 
 if (!isProduction) {
-  app.use(cors({ origin: process.env.FRONTEND_URL || "http://localhost:5173" }));
+  app.use(cors({ origin: process.env.FRONTEND_URL || "http://localhost:5175" }));
 }
 
 app.use(express.json());

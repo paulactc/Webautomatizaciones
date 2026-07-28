@@ -18,13 +18,17 @@ export default function Contact() {
   async function handleSubmit(e) {
     e.preventDefault();
     setStatus("loading");
-    const message =
-      `Negocio: ${form.business}\nTeléfono: ${form.phone}\nQuiere automatizar: ${form.automate}`;
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: form.name, email: form.email, message }),
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          business: form.business,
+          phone: form.phone,
+          message: form.automate,
+        }),
       });
       if (!res.ok) throw new Error();
       setStatus("success");
