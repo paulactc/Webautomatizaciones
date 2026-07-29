@@ -9,17 +9,15 @@ services:
       - key: NODE_ENV
         value: production
       # ⚠️  Las siguientes variables deben configurarse manualmente en Render Dashboard
-      - key: OMNIROUTE_URL
+      - key: AI_API_URL
         sync: false
-      - key: OMNIROUTE_API_KEY
+      - key: AI_API_KEY
         sync: false
-      - key: SMTP_HOST
+      - key: CHAT_MODEL
         sync: false
-      - key: SMTP_PORT
+      - key: BREVO_API_KEY
         sync: false
-      - key: SMTP_USER
-        sync: false
-      - key: SMTP_PASS
+      - key: SMTP_FROM
         sync: false
       - key: CONTACT_EMAIL
         sync: false

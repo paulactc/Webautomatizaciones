@@ -1,6 +1,8 @@
-const transporter = require("../services/mailer");
+const { sendMail } = require("../services/mailer");
 
-const OMNIROUTE_URL = process.env.OMNIROUTE_URL || "http://localhost:20128/v1";
+const AI_API_URL = process.env.AI_API_URL || "https://api.groq.com/openai/v1";
+const AI_API_KEY = process.env.AI_API_KEY;
+const CHAT_MODEL = process.env.CHAT_MODEL || "llama-3.3-70b-versatile";
 
 const SYSTEM_PROMPT = `Eres el asistente virtual de Automatiza.ia, servicio de automatización con IA y CRM para pymes y autónomos.
 
@@ -23,50 +25,131 @@ Cómo funciona:
 
 Responde siempre en español, de forma amigable y concisa (máximo 3-4 frases por respuesta).
 
-REGLAS PARA CAPTAR CONTACTOS:
-- Cuando el visitante muestre interés concreto (pregunta por precio, plazos, cómo empezar, si automatizamos X cosa específica, o pide presupuesto), pídele amablemente su nombre, negocio y teléfono para que le contactemos.
+REGLAS PARA CAPTAR LEADS:
+- Cuando el visitante muestre interés concreto (pregunta por precio, plazos, cómo empezar, si automatizamos X cosa específica, o pide presupuesto), pídele amablemente su nombre y email o teléfono.
 - Solo pide los datos UNA vez. Si ya los tiene, no los vuelvas a pedir.
-- Una vez que el visitante te haya dado TANTO su nombre COMO su email o teléfono, incluye al final de tu respuesta, en una línea separada, este marcador oculto exacto (nunca lo menciones al usuario):
-  [LEAD:nombre=NOMBRE,email=EMAIL,interes=RESUMEN_BREVE]
-  Sustituye NOMBRE, EMAIL y RESUMEN_BREVE con los datos reales de la conversación.
-- No inventes precios específicos para sectores. Di que los packs están cerrados y que se pueden consultar en la web.`;
+- Cuando tengas nombre Y (email o teléfono), usa la herramienta register_lead para registrar el lead. Antes de llamarla, confirma con el usuario: "¿Quieres que te contactemos?".
+- No inventes precios específicos para sectores. Usa la herramienta get_plans si te preguntan por precios detallados.`;
 
-// Extrae y elimina el marcador [LEAD:...] del texto de la IA
-function extractLead(text) {
-  const match = text.match(/\[LEAD:nombre=([^,\]]+),email=([^,\]]+),interes=([^\]]+)\]/);
-  if (!match) return { lead: null, clean: text };
-  const clean = text.replace(match[0], "").replace(/\n{3,}/g, "\n\n").trim();
+const tools = [
+  {
+    type: "function",
+    function: {
+      name: "get_plans",
+      description: "Obtiene la información detallada de los planes y precios de Automatiza.ia",
+      parameters: {
+        type: "object",
+        properties: {},
+        required: [],
+      },
+    },
+  },
+  {
+    type: "function",
+    function: {
+      name: "register_lead",
+      description: "Registra un lead con los datos del visitante cuando ha mostrado interés y ha proporcionado voluntariamente su nombre y email o teléfono. Solo llamar después de que el usuario haya confirmado explícitamente que quiere que le contactemos.",
+      parameters: {
+        type: "object",
+        properties: {
+          nombre: { type: "string", description: "Nombre completo del interesado" },
+          email: { type: "string", description: "Email del interesado" },
+          telefono: { type: "string", description: "Teléfono del interesado" },
+          interes: { type: "string", description: "Resumen breve de lo que le interesa o el servicio sobre el que pregunta" },
+        },
+        required: ["nombre", "interes"],
+      },
+    },
+  },
+];
+
+class GroqError extends Error {
+  constructor(body, status) {
+    super(`Groq API error: ${status}`);
+    this.name = "GroqError";
+    this.status = status;
+    this.body = body;
+  }
+}
+
+async function callGroq(messages, opts = {}) {
+  const body = {
+    model: CHAT_MODEL,
+    messages,
+    max_tokens: 600,
+    temperature: 0.5,
+  };
+
+  if (opts.tools) {
+    body.tools = opts.tools;
+    body.tool_choice = "auto";
+  }
+
+  const response = await fetch(`${AI_API_URL}/chat/completions`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${AI_API_KEY}`,
+    },
+    body: JSON.stringify(body),
+    signal: AbortSignal.timeout(20000),
+  });
+
+  if (!response.ok) {
+    const errBody = await response.text();
+    throw new GroqError(errBody, response.status);
+  }
+
+  return response.json();
+}
+
+function getPlanInfo() {
   return {
-    lead: { nombre: match[1].trim(), email: match[2].trim(), interes: match[3].trim() },
-    clean,
+    planes: [
+      { nombre: "Pack Base", precio: "500€ + 50€/mes", incluye: "CRM + agente de citas + respuestas frecuentes" },
+      { nombre: "Pack Avanzado", precio: "850€ + 75€/mes", incluye: "Todo lo del Base + agente IA personalizado + automatización de presupuestos" },
+      { nombre: "Pack a Medida", precio: "desde 1.200€", incluye: "Automatización completa a medida" },
+    ],
+    web_opcional: "+250€ en cualquier pack",
+    como_funciona: ["1. Hablamos (llamada o WhatsApp gratuito)", "2. Lo montamos (implementación en 3-5 días)", "3. Tu negocio trabaja solo"],
   };
 }
 
-async function sendLeadEmail(lead) {
-  await transporter.sendMail({
-    from: `"Automatiza.ia Chatbot" <${process.env.SMTP_USER}>`,
-    to: process.env.CONTACT_EMAIL || process.env.SMTP_USER,
-    subject: `[Lead Chatbot] ${lead.nombre} está interesado/a`,
-    html: `
-      <h2 style="color:#c9284f">Nuevo lead captado por el chatbot</h2>
-      <p><strong>Nombre:</strong> ${lead.nombre}</p>
-      <p><strong>Email:</strong> ${lead.email}</p>
-      <p><strong>Interés:</strong> ${lead.interes}</p>
-      <hr>
-      <p style="color:#888;font-size:0.85em">Este contacto se ha captado automáticamente desde el chat del portfolio.</p>
-    `,
-  });
+async function registerLead({ nombre, email, telefono, interes }) {
+  try {
+    const to = process.env.CONTACT_EMAIL || "paulact39@gmail.com";
+
+    await sendMail({
+      from: process.env.SMTP_FROM || "Automatiza.ia Chatbot <paulact39@gmail.com>",
+      to,
+      subject: `[Lead Chatbot] ${nombre} está interesado/a`,
+      html: `
+        <h2 style="color:#c9284f">Nuevo lead captado por el chatbot</h2>
+        <p><strong>Nombre:</strong> ${nombre}</p>
+        ${email ? `<p><strong>Email:</strong> ${email}</p>` : ""}
+        ${telefono ? `<p><strong>Teléfono:</strong> ${telefono}</p>` : ""}
+        <p><strong>Interés:</strong> ${interes || "No especificado"}</p>
+        <hr>
+        <p style="color:#888;font-size:0.85em">Lead captado automáticamente desde el chat vía tool calling.</p>
+      `,
+    });
+
+    return { ok: true };
+  } catch (err) {
+    console.error("Error enviando email de lead:", err);
+    return { ok: true, notice: "Datos recibidos (fallo al enviar email, pero los datos quedaron registrados)" };
+  }
 }
 
 async function handleChat(req, res) {
   const { messages } = req.body;
 
   if (!messages || !Array.isArray(messages) || messages.length === 0) {
-    return res.status(400).json({ error: "messages requerido" });
+    return res.status(400).json({ error: "messages requerido", reply: "Error de solicitud.", leadCaptured: false });
   }
 
-  if (!process.env.OMNIROUTE_URL) {
-    console.warn("OMNIROUTE_URL no configurado");
+  if (!AI_API_KEY || AI_API_KEY.startsWith("cambia_esto") || AI_API_KEY.startsWith("sk-")) {
+    console.warn("AI_API_KEY no configurada correctamente");
     return res.status(502).json({
       reply: "Lo siento, el servicio de IA no está disponible en este momento. Escríbeme a paula_ctc@hotmail.es o por WhatsApp y te atiendo personalmente.",
       leadCaptured: false,
@@ -74,54 +157,69 @@ async function handleChat(req, res) {
   }
 
   try {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 15000);
+    const fullMessages = [
+      { role: "system", content: SYSTEM_PROMPT },
+      ...messages,
+    ];
 
-    const response = await fetch(`${OMNIROUTE_URL}/chat/completions`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.OMNIROUTE_API_KEY || "omniroute"}`,
-      },
-      body: JSON.stringify({
-        model: "auto/best-free",
-        messages: [{ role: "system", content: SYSTEM_PROMPT }, ...messages],
-        max_tokens: 350,
-        stream: false,
-      }),
-      signal: controller.signal,
-    });
-    clearTimeout(timeout);
+    const data = await callGroq(fullMessages, { tools });
+    const message = data.choices?.[0]?.message;
 
-    if (!response.ok) {
-      const err = await response.text();
-      console.error("OmniRoute error:", err);
-      return res.status(502).json({
-        reply: "El servicio de IA está temporalmente fuera de servicio. Inténtalo de nuevo más tarde o contáctame directamente.",
-        leadCaptured: false,
+    if (!message) {
+      return res.status(502).json({ reply: "No pude generar una respuesta.", leadCaptured: false });
+    }
+
+    if (!message.tool_calls) {
+      return res.json({ reply: message.content || "No pude generar una respuesta.", leadCaptured: false });
+    }
+
+    let leadCaptured = false;
+    const toolResults = [];
+
+    for (const call of message.tool_calls) {
+      let args = {};
+      try {
+        args = JSON.parse(call.function.arguments);
+      } catch {
+        args = {};
+      }
+
+      let result;
+      switch (call.function.name) {
+        case "get_plans":
+          result = getPlanInfo();
+          break;
+        case "register_lead":
+          result = await registerLead(args);
+          leadCaptured = !!result.ok;
+          break;
+        default:
+          result = { error: `Tool desconocida: ${call.function.name}` };
+      }
+
+      toolResults.push({
+        role: "tool",
+        tool_call_id: call.id,
+        content: JSON.stringify(result),
       });
     }
 
-    const data = await response.json();
-    const raw = data.choices?.[0]?.message?.content ?? "No pude generar una respuesta.";
+    const messagesWithTools = [...fullMessages, message, ...toolResults];
+    const data2 = await callGroq(messagesWithTools);
+    const reply = data2.choices?.[0]?.message?.content ?? "No pude generar una respuesta final.";
 
-    const { lead, clean } = extractLead(raw);
-
-    if (lead) {
-      if (!transporter) {
-        console.warn("SMTP no configurado — lead capturado pero no notificado por email");
-      } else {
-        sendLeadEmail(lead).catch((err) => console.error("Error enviando lead:", err));
-      }
+    return res.json({ reply, leadCaptured });
+  } catch (err) {
+    if (err.name === "GroqError") {
+      console.error("Groq API error:", err.status, err.body);
+      const msg = err.status === 400
+        ? "Error de validación en la IA. Si ves esto, revisa el esquema de las tools."
+        : "El servicio de IA está temporalmente fuera de servicio. Inténtalo de nuevo más tarde o contáctame directamente.";
+      return res.status(502).json({ reply: msg, leadCaptured: false });
     }
 
-    res.json({ reply: clean, leadCaptured: !!lead });
-  } catch (err) {
-    console.error("Chat error:", err);
-    const msg = err.name === "AbortError"
-      ? "El servicio de IA tardó demasiado en responder. Inténtalo de nuevo."
-      : "Error de conexión con el servicio de IA. Inténtalo de nuevo.";
-    res.status(502).json({ reply: msg, leadCaptured: false });
+    console.error("Chat internal error:", err);
+    return res.status(500).json({ reply: "Error interno del servidor. Inténtalo de nuevo.", leadCaptured: false });
   }
 }
 

@@ -1,17 +1,13 @@
-const transporter = require("../services/mailer");
+const { sendMail } = require("../services/mailer");
 
 async function sendContactEmail(req, res) {
   const { name, email, business, phone, message } = req.body;
 
   try {
-    if (!transporter) {
-      console.warn("SMTP no configurado — omitiendo envío de email");
-      return res.json({ ok: true, notice: "Mensaje recibido (email no enviado: SMTP sin configurar)" });
-    }
-    await transporter.sendMail({
-      from: `"Portfolio" <${process.env.SMTP_USER}>`,
-      to: process.env.CONTACT_EMAIL || process.env.SMTP_USER,
-      replyTo: email,
+    await sendMail({
+      from: process.env.SMTP_FROM || "Portfolio <paulact39@gmail.com>",
+      to: process.env.CONTACT_EMAIL || "paulact39@gmail.com",
+      replyTo: `${name} <${email}>`,
       subject: `[Portfolio] Mensaje de ${name}`,
       html: `
         <p><strong>Nombre:</strong> ${name}</p>
