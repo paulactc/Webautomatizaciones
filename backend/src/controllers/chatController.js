@@ -148,10 +148,10 @@ async function handleChat(req, res) {
     return res.status(400).json({ error: "messages requerido", reply: "Error de solicitud.", leadCaptured: false });
   }
 
-  if (!AI_API_KEY || AI_API_KEY.startsWith("cambia_esto") || AI_API_KEY.startsWith("sk-")) {
-    console.warn("AI_API_KEY no configurada correctamente");
-    return res.status(502).json({
-      reply: "Lo siento, el servicio de IA no está disponible en este momento. Escríbeme a paula_ctc@hotmail.es o por WhatsApp y te atiendo personalmente.",
+  if (!AI_API_KEY || AI_API_KEY.startsWith("cambia_esto")) {
+    console.warn("AI_API_KEY no configurada");
+    return res.json({
+      reply: "Lo siento, el asistente no está disponible ahora. Escríbeme a paula_ctc@hotmail.es o por WhatsApp y te atiendo yo personalmente.",
       leadCaptured: false,
     });
   }
@@ -166,7 +166,7 @@ async function handleChat(req, res) {
     const message = data.choices?.[0]?.message;
 
     if (!message) {
-      return res.status(502).json({ reply: "No pude generar una respuesta.", leadCaptured: false });
+      return res.json({ reply: "No pude generar una respuesta. Escríbeme a paula_ctc@hotmail.es y te atiendo directamente.", leadCaptured: false });
     }
 
     if (!message.tool_calls) {
@@ -212,14 +212,14 @@ async function handleChat(req, res) {
   } catch (err) {
     if (err.name === "GroqError") {
       console.error("Groq API error:", err.status, err.body);
-      const msg = err.status === 400
-        ? "Error de validación en la IA. Si ves esto, revisa el esquema de las tools."
-        : "El servicio de IA está temporalmente fuera de servicio. Inténtalo de nuevo más tarde o contáctame directamente.";
-      return res.status(502).json({ reply: msg, leadCaptured: false });
+    } else {
+      console.error("Chat internal error:", err);
     }
 
-    console.error("Chat internal error:", err);
-    return res.status(500).json({ reply: "Error interno del servidor. Inténtalo de nuevo.", leadCaptured: false });
+    return res.json({
+      reply: "El asistente está descansando un momento. Escríbeme a paula_ctc@hotmail.es o por WhatsApp y te respondo ya.",
+      leadCaptured: false,
+    });
   }
 }
 
