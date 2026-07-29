@@ -84,6 +84,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── CRM visual ── */}
+      <CrmShowcase />
+
       {/* ── Dolor ── */}
       <section className="pain-section">
         <div className="container container--narrow">
@@ -105,9 +108,6 @@ export default function Home() {
 
       {/* ── Testimonios ── */}
       <Testimonials />
-
-      {/* ── CRM visual ── */}
-      <CrmShowcase />
 
       {/* ── Por qué elegirme ── */}
       <WhyMe />
