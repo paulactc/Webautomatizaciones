@@ -18,12 +18,13 @@ if (!isProduction) {
 app.use(express.json());
 
 const limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 50 });
+
+app.get("/api/health", (_req, res) => res.json({ ok: true }));
+
 app.use("/api", limiter);
 
 app.use("/api/contact", contactRoutes);
 app.use("/api/chat", chatRoutes);
-
-app.get("/api/health", (_req, res) => res.json({ ok: true }));
 
 if (isProduction) {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
