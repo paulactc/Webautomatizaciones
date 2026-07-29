@@ -116,6 +116,32 @@
   }
 }
 
+.sector-tabs__maintenance {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, $accent-light 0%, rgba($accent, 0.06) 100%);
+  border: 1px solid rgba($accent, 0.15);
+  border-radius: 12px;
+  font-size: 0.92rem;
+  color: $text;
+  text-align: center;
+  line-height: 1.5;
+
+  svg {
+    color: $accent;
+    flex-shrink: 0;
+  }
+
+  strong {
+    color: $accent;
+    font-weight: 700;
+  }
+}
+
 // ── Pricing ──
 .pricing-section {
   background: $surface-2;

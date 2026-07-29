@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Scissors, Stethoscope, Wrench, Building2, GraduationCap } from "lucide-react";
+import { Scissors, Stethoscope, Wrench, Building2, GraduationCap, Sparkles } from "lucide-react";
 
 const sectors = [
   {
@@ -17,9 +17,9 @@ const sectors = [
     icon: Stethoscope,
     label: "Clínicas / Fisioterapia",
     automations: [
-      "Primera cita agendada desde WhatsApp",
-      "Recordatorios de tratamiento pendiente",
-      "Confirmación automática de citas",
+      "Avisos de próximas revisiones y sesiones",
+      "Citas agendadas automáticamente por servicios",
+      "Presupuestos",
     ],
   },
   {
@@ -27,9 +27,9 @@ const sectors = [
     icon: Wrench,
     label: "Talleres mecánicos",
     automations: [
-      "Presupuesto orientativo automático",
-      "Aviso cuando el coche está listo",
-      "Seguimiento de presupuestos sin respuesta",
+      "Aviso de próximas revisiones",
+      "Confirmación de estados de reparación",
+      "Citas agendadas",
     ],
   },
   {
@@ -39,7 +39,7 @@ const sectors = [
     automations: [
       "Respuesta inmediata a cada consulta de inmueble",
       "Filtrado automático de interesados",
-      "Seguimiento post-visita sin intervención manual",
+      "Respuestas genéricas",
     ],
   },
   {
@@ -88,6 +88,14 @@ export default function SectorTabs() {
               </div>
             ))}
           </div>
+        </div>
+
+        <div className="sector-tabs__maintenance">
+          <Sparkles size={18} strokeWidth={1.5} />
+          <span>
+            Todo incluido en tu pack con <strong>mantenimiento mensual por solo 30€/mes</strong> — 
+            agente IA siempre actualizado, ajustes sin coste y soporte prioritario.
+          </span>
         </div>
       </div>
     </section>

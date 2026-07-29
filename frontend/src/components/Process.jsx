@@ -30,12 +30,19 @@ export default function Process() {
           Tres pasos y tu negocio está automatizado.
         </p>
         <div className="process__grid">
-          {steps.map(({ icon: Icon, number, title, desc }) => (
+          {steps.map(({ icon: Icon, number, title, desc }, i) => (
             <div key={number} className="process__step">
-              <Icon size={32} strokeWidth={1.5} className="process__icon" />
-              <span className="process__number">{number}</span>
-              <h3 className="process__title">{title}</h3>
-              <p className="process__desc">{desc}</p>
+              <div className="process__step-header">
+                <div className="process__icon-wrap">
+                  <Icon size={28} strokeWidth={1.5} />
+                </div>
+                {i < steps.length - 1 && <div className="process__connector" />}
+              </div>
+              <div className="process__step-body">
+                <span className="process__number">{number}</span>
+                <h3 className="process__title">{title}</h3>
+                <p className="process__desc">{desc}</p>
+              </div>
             </div>
           ))}
         </div>

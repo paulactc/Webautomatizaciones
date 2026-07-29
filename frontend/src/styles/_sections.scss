@@ -325,60 +325,120 @@
 // Process section
 .process-section {
   background: $surface-2;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -40%;
+    right: -20%;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba($accent, 0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
 }
 
 .process__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  gap: 0;
   position: relative;
+  margin-top: 3rem;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 1rem;
   }
 }
 
 .process__step {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  align-items: center;
+  gap: 0;
+  text-align: center;
   position: relative;
+  padding: 2rem 1.5rem;
+}
 
-  &:not(:last-child)::after {
-    content: '→';
-    position: absolute;
-    right: -1.25rem;
-    top: 0.6rem;
-    font-size: 1.2rem;
-    color: $accent;
-    font-weight: 700;
+.process__step-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  margin-bottom: 1.5rem;
+}
 
-    @media (max-width: 768px) {
-      display: none;
-    }
+.process__icon-wrap {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, $accent 0%, $accent-2 100%);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 8px 24px rgba($accent, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+
+  .process__step:hover & {
+    transform: scale(1.06);
+    box-shadow: 0 12px 32px rgba($accent, 0.4);
   }
 }
 
+.process__connector {
+  position: absolute;
+  left: calc(50% + 44px);
+  top: 50%;
+  width: calc(100% - 88px);
+  height: 2px;
+  background: linear-gradient(90deg, $accent-light 0%, $accent 100%);
+  z-index: 1;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.process__step-body {
+  padding: 0 0.5rem;
+}
+
 .process__number {
-  font-size: 2.5rem;
-  font-weight: 900;
-  letter-spacing: -2px;
-  color: $accent-warm;
-  line-height: 1;
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: $accent;
+  background: rgba($accent, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
 }
 
 .process__title {
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: $text;
   line-height: 1.3;
+  margin-bottom: 0.6rem;
 }
 
 .process__desc {
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   color: $text-muted;
-  line-height: 1.75;
+  line-height: 1.7;
+  max-width: 280px;
+  margin: 0 auto;
 }
 
 // Testimonials
@@ -470,6 +530,19 @@
 // Why Me
 .why-section {
   padding: 5rem 0;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: -30%;
+    left: -20%;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba($accent, 0.03) 0%, transparent 70%);
+    pointer-events: none;
+  }
 }
 
 .why-section__title,
@@ -481,65 +554,123 @@
   margin-bottom: 3rem;
 }
 
-.why__list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
+.why__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
 
-.why__item {
-  display: flex;
-  gap: 1rem;
-  align-items: flex-start;
-  padding: 1.25rem 1.5rem;
-  background: $surface;
-  border: 1px solid $border;
-  border-radius: 12px;
-  transition: border-color 0.2s, transform 0.2s;
-
-  &:hover {
-    border-color: $accent;
-    transform: translateX(4px);
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-.why__icon {
-  color: $accent;
-  flex-shrink: 0;
-  margin-top: 2px;
+.why__card {
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: 16px;
+  padding: 1.75rem;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, $accent, $accent-2);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  &:hover {
+    border-color: $accent;
+    box-shadow: 0 8px 32px rgba($accent, 0.1);
+    transform: translateY(-2px);
+
+    &::before {
+      opacity: 1;
+    }
+  }
 }
 
-.why__text {
+.why__card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba($accent, 0.1) 0%, rgba($accent-2, 0.08) 100%);
   display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  color: $accent;
+  transition: background 0.3s, color 0.3s;
+
+  .why__card:hover & {
+    background: linear-gradient(135deg, $accent 0%, $accent-2 100%);
+    color: #fff;
+  }
 }
 
-.why__item-title {
-  font-size: 1rem;
+.why__card-title {
+  font-size: 1.05rem;
   font-weight: 700;
   color: $text;
+  margin-bottom: 0.4rem;
 }
 
-.why__item-desc {
-  font-size: 0.9rem;
+.why__card-desc {
+  font-size: 0.88rem;
   color: $text-muted;
-  line-height: 1.6;
+  line-height: 1.65;
   margin: 0;
 }
 
-.why__item--security {
-  background: $accent-light;
-  border-color: rgba($accent, 0.15);
-
-  &:hover {
-    border-color: $accent;
-    background: $surface;
-  }
+.why__security {
+  margin-top: 3rem;
+  text-align: center;
 }
 
-.why__icon--security {
+.why__security-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: $accent;
+  margin-bottom: 1rem;
+}
+
+.why__security-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.why__security-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  background: $accent-light;
+  border: 1px solid rgba($accent, 0.15);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
   color: $accent-dark;
+  transition: background 0.2s, border-color 0.2s;
+
+  &:hover {
+    background: $surface;
+    border-color: $accent;
+  }
+
+  svg {
+    flex-shrink: 0;
+  }
 }
 
 // CRM Showcase
