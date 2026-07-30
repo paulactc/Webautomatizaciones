@@ -2,6 +2,7 @@
 
 .hero {
   min-height: calc(100vh - 65px);
+  max-height: 900px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,28 +11,38 @@
   padding: 4rem 1.5rem;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(180deg, $bg 0%, rgba($accent-light, 0.3) 50%, $bg 100%);
+  background: $text;
 
-  &__particles {
+  &__video-wrapper {
     position: absolute;
     inset: 0;
     z-index: 0;
+    overflow: hidden;
+  }
+
+  &__video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  &__video-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba($text, 0.75) 0%,
+      rgba($text, 0.45) 50%,
+      rgba($text, 0.85) 100%
+    );
   }
 
   &__content {
     max-width: 720px;
     position: relative;
     z-index: 1;
-  }
-
-  &__photo {
-    width: 110px;
-    height: 110px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid $accent-light;
-    margin-bottom: 1rem;
-    box-shadow: 0 4px 20px rgba($accent-dark, 0.12);
   }
 
   &__name {
@@ -49,15 +60,17 @@
     line-height: 1.05;
     letter-spacing: -2px;
     margin-bottom: 1.2rem;
-    color: $text;
+    color: #fff;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.4);
   }
 
   &__subtitle {
     font-size: 1.05rem;
-    color: $text-muted;
+    color: #fff;
     max-width: 540px;
     margin: 0 auto 1.5rem;
     line-height: 1.7;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
   }
 
   &__pills {
@@ -73,15 +86,14 @@
     align-items: center;
     gap: 0.35rem;
     padding: 0.55rem 1.1rem;
-    background: rgba(255, 255, 255, 0.7);
-    border: 1.5px solid rgba($accent, 0.25);
+    background: rgba(255, 255, 255, 0.12);
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
     border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 600;
-    color: $accent-dark;
+    color: #fff;
     letter-spacing: 0.2px;
     backdrop-filter: blur(12px);
-    box-shadow: 0 2px 8px rgba($accent, 0.08);
   }
 
   &__actions {
@@ -104,7 +116,7 @@
   &__scroll {
     position: absolute;
     bottom: 2rem;
-    color: $text-muted;
+    color: rgba(#fff, 0.5);
     animation: bounce 2s infinite;
     &:hover { color: $accent; }
   }

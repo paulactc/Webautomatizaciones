@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Scissors, Stethoscope, Wrench, Building2, GraduationCap, Sparkles } from "lucide-react";
+import { Scissors, Stethoscope, Wrench, Building2, GraduationCap, Globe, Sparkles } from "lucide-react";
 
 const sectors = [
   {
@@ -52,6 +52,16 @@ const sectors = [
       "Respuesta a preguntas frecuentes de cursos",
     ],
   },
+  {
+    id: "web",
+    icon: Globe,
+    label: "Páginas web y plataformas",
+    automations: [
+      "Captura y respuesta automática desde formularios",
+      "Notificaciones al instante de nuevos leads",
+      "Chatbot integrado en tu web 24/7",
+    ],
+  },
 ];
 
 export default function SectorTabs() {
@@ -74,13 +84,13 @@ export default function SectorTabs() {
                 className={`sector-tabs__btn${active === id ? " sector-tabs__btn--active" : ""}`}
                 onClick={() => setActive(id)}
               >
-                <Icon size={20} strokeWidth={1.5} />
+                <Icon size={22} strokeWidth={1.5} />
                 {label}
               </button>
             ))}
           </div>
 
-          <div className="sector-tabs__content">
+          <div className="sector-tabs__content" key={current.id}>
             {current.automations.map((item, i) => (
               <div key={i} className="sector-tabs__item">
                 <span className="sector-tabs__check">&#10003;</span>
@@ -94,7 +104,7 @@ export default function SectorTabs() {
           <Sparkles size={18} strokeWidth={1.5} />
           <span>
             Todo incluido en tu pack con <strong>mantenimiento mensual por solo 30€/mes</strong> — 
-            agente IA siempre actualizado, ajustes sin coste y soporte prioritario.
+            agente IA siempre actualizado, ajustes sin coste y soporte en 24h.
           </span>
         </div>
       </div>

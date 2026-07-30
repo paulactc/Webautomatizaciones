@@ -1,6 +1,4 @@
 import { ArrowRight } from "lucide-react";
-import { Link } from "react-router";
-import { Particles } from "../components/magicui/particles.jsx";
 import { BlurFade } from "../components/magicui/blur-fade.jsx";
 import WhatsAppIcon from "../components/icons/WhatsAppIcon.jsx";
 import SectorTabs from "../components/SectorTabs.jsx";
@@ -10,6 +8,7 @@ import Faq from "../components/Faq.jsx";
 import Testimonials from "../components/Testimonials.jsx";
 import CrmShowcase from "../components/CrmShowcase.jsx";
 import WhyMe from "../components/WhyMe.jsx";
+import ClientLogos from "../components/ClientLogos.jsx";
 
 const WA_NUMBER = "34722439479";
 const WA_TEXT = encodeURIComponent("Hola, me interesa automatizar mi negocio. ¿Me puedes informar?");
@@ -19,40 +18,31 @@ export default function Home() {
     <>
       {/* ── Hero ── */}
       <section className="hero">
-        <Particles
-          className="hero__particles"
-          quantity={150}
-          ease={70}
-          color="#c4652a"
-          size={0.8}
-          staticity={30}
-          refresh
-        />
+        <div className="hero__video-wrapper">
+          <video
+            className="hero__video"
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster="/images/CRM.png"
+          >
+            <source src="/videos/videowebautomatizaciones.mp4" type="video/mp4" />
+          </video>
+          <div className="hero__video-overlay" />
+        </div>
         <div className="hero__content">
-          <BlurFade delay={0.1} inView>
-            <img
-              src="/images/IMG_20260727_144413.jpg"
-              alt="Paula Castillo Toldos"
-              className="hero__photo"
-            />
-          </BlurFade>
-
           <BlurFade delay={0.2} inView>
-            <p className="hero__name">Paula Castillo Toldos</p>
-          </BlurFade>
-
-          <BlurFade delay={0.3} inView>
             <h1 className="hero__title">
-              Tu negocio responde solo,<br />
-              <span className="highlight">aunque tú no estés</span>
+              Mientras tu negocio responde,<br />
+              <span className="highlight">tú puedes centrarte en hacerlo crecer</span>
             </h1>
           </BlurFade>
 
           <BlurFade delay={0.4} inView>
             <p className="hero__subtitle">
-              Automatizo la atención al cliente y las citas con inteligencia artificial
-              para negocios reales que no pueden perder oportunidades.
-              Sin líos técnicos y con precio cerrado.
+              Automatizamos tu atención con inteligencia artificial.<br />
+              Tecnología para responder al instante. Personas para resolver lo importante.
             </p>
           </BlurFade>
 
@@ -76,23 +66,33 @@ export default function Home() {
 
           <BlurFade delay={0.6} inView>
             <div className="hero__pills">
-              <span className="hero__pill">Sin permanencia</span>
               <span className="hero__pill">Precio cerrado</span>
-              <span className="hero__pill">Activo en 3-5 días</span>
+              <span className="hero__pill">Activo en 7-10 días</span>
             </div>
           </BlurFade>
         </div>
       </section>
 
+      {/* ── Confían en mí ── */}
+      <ClientLogos />
+
       {/* ── CRM visual ── */}
       <CrmShowcase />
 
-      {/* ── Dolor ── */}
-      <section className="pain-section">
+      {/* ── Filosofía ── */}
+      <section className="philosophy-section">
         <div className="container container--narrow">
-          <p className="pain-section__text">
-            Cada mensaje sin responder es un cliente que se va a la competencia.
-            Cada cita sin confirmar es una hora de agenda perdida.
+          <p className="philosophy-section__text">
+            La mejor experiencia de cliente no consiste en sustituir a las personas,
+            sino en permitir que estén donde realmente aportan valor.
+          </p>
+          <p className="philosophy-section__text philosophy-section__text--mt">
+            Automatizamos la atención repetitiva, centralizamos todas las conversaciones
+            en un único panel y conectamos cada interacción con tu equipo cuando es necesario.
+          </p>
+          <p className="philosophy-section__text philosophy-section__text--mt">
+            Porque una empresa que responde mejor, también genera más confianza,
+            más fidelidad y más ventas.
           </p>
         </div>
       </section>
