@@ -246,6 +246,13 @@
     line-height: 1;
   }
 
+  &__iva {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: $text-muted;
+    vertical-align: super;
+  }
+
   &__monthly {
     font-size: 0.88rem;
     color: $text-muted;

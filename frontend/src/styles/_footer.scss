@@ -55,9 +55,12 @@
     font-size: 0.88rem;
     color: $text-muted;
     transition: color 0.2s;
+    cursor: pointer;
+    text-decoration: none;
 
     &:hover {
       color: $accent;
+      text-decoration: underline;
     }
 
     &--icon {

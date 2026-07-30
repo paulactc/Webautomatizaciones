@@ -5,24 +5,24 @@ const plans = [
   {
     name: "Pack Base",
     price: "500 €",
-    monthly: "50 €/mes",
+    monthly: "Desde 50 €/mes",
     highlight: false,
     features: [
-      "CRM con contactos y seguimiento",
-      "Agente de citas automático",
-      "Respuestas a preguntas frecuentes",
+      "Panel de gestiones realizadas",
+      "Calendario de citas automático",
+      "Respuestas automáticas a preguntas frecuentes",
+      "Integración con WhatsApp",
     ],
   },
   {
     name: "Pack Avanzado",
     price: "850 €",
-    monthly: "75 €/mes",
+    monthly: "Desde 75 €/mes",
     highlight: true,
     features: [
       "Todo lo del Pack Base",
-      "Agente IA personalizado para tu negocio",
-      "Automatización de presupuestos y seguimientos",
-      "Integración con WhatsApp",
+      "Base de datos de clientes con historial de servicios",
+      "Segmentación inteligente para campañas de marketing",
     ],
   },
   {
@@ -53,8 +53,8 @@ export default function Pricing() {
             <div key={name} className={`pricing-card${highlight ? " pricing-card--highlight" : ""}`}>
               {highlight && <span className="pricing-card__badge">Recomendado</span>}
               <h3 className="pricing-card__name">{name}</h3>
-              <div className="pricing-card__price">{price}</div>
-              <div className="pricing-card__monthly">{monthly}</div>
+              <div className="pricing-card__price">{price.replace(" +IVA", "")} <span className="pricing-card__iva">+IVA</span></div>
+              <div className="pricing-card__monthly">{monthly} <span className="pricing-card__iva">+IVA</span></div>
               <ul className="pricing-card__features">
                 {features.map((f) => (
                   <li key={f}>
@@ -73,7 +73,7 @@ export default function Pricing() {
           ))}
         </div>
 
-        <p className="pricing__note">Página web: +250 € opcional, en cualquier pack.</p>
+        <p className="pricing__note">Página web: +250 € <span class="pricing-card__iva">+IVA</span> opcional, en cualquier pack.</p>
       </div>
     </section>
   );

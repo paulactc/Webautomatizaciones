@@ -1,4 +1,5 @@
-import { Euro, CalendarX, Clock, Headphones, Puzzle, ShieldCheck, Lock, Database } from "lucide-react";
+import { Euro, CalendarX, Clock, Headphones, Puzzle, ShieldCheck, Lock, Database, ArrowRight } from "lucide-react";
+import { motion } from "motion/react";
 
 const reasons = [
   {
@@ -13,7 +14,7 @@ const reasons = [
   },
   {
     icon: Clock,
-    title: "Activo en 3-5 días",
+    title: "Activo en 5-7 días",
     desc: "No meses de desarrollo. Tu automatización está funcionando en menos de una semana.",
   },
   {
@@ -37,27 +38,51 @@ const security = [
 export default function WhyMe() {
   return (
     <section className="why-section">
+      <div className="why-section__bg" />
       <div className="container container--narrow">
-        <h2 className="section-title why-section__title">
-          Por qué trabajamos juntos
-        </h2>
-        <p className="section-subtitle why-section__subtitle">
-          Lo que nos diferencia no es la tecnología, es la forma de trabajar
-        </p>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="section-title why-section__title">
+            Por qué trabajamos juntos
+          </h2>
+          <p className="section-subtitle why-section__subtitle">
+            Lo que nos diferencia no es la tecnología, es la forma de trabajar
+          </p>
+        </motion.div>
 
         <div className="why__grid">
-          {reasons.map(({ icon: Icon, title, desc }) => (
-            <div key={title} className="why__card">
+          {reasons.map(({ icon: Icon, title, desc }, i) => (
+            <motion.div
+              key={title}
+              className="why__card"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+            >
               <div className="why__card-icon">
-                <Icon size={24} strokeWidth={1.5} />
+                <Icon size={22} strokeWidth={1.5} />
               </div>
-              <h3 className="why__card-title">{title}</h3>
-              <p className="why__card-desc">{desc}</p>
-            </div>
+              <div className="why__card-body">
+                <h3 className="why__card-title">{title}</h3>
+                <p className="why__card-desc">{desc}</p>
+              </div>
+              <ArrowRight size={16} className="why__card-arrow" strokeWidth={2} />
+            </motion.div>
           ))}
         </div>
 
-        <div className="why__security">
+        <motion.div
+          className="why__security"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
           <span className="why__security-label">Seguridad y confianza</span>
           <div className="why__security-list">
             {security.map(({ icon: Icon, title }) => (
@@ -67,7 +92,7 @@ export default function WhyMe() {
               </span>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
