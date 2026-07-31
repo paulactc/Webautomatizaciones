@@ -1,5 +1,7 @@
 import { useRef } from "react";
 import { ArrowRight, CheckCircle2, ChevronLeft, ChevronRight } from "lucide-react";
+import CalendarShowcase from "./CalendarShowcase.jsx";
+import CrmKanbanShowcase from "./CrmKanbanShowcase.jsx";
 
 const highlights = [
   "Empiezas con lo básico y escalas cuando lo necesites",
@@ -12,7 +14,9 @@ export default function CrmShowcase() {
 
   const scroll = (dir) => {
     if (!scrollRef.current) return;
-    scrollRef.current.scrollBy({ left: dir * 520, behavior: "smooth" });
+    const frame = scrollRef.current.querySelector(".crm-showcase__frame");
+    const step = (frame ? frame.offsetWidth : 720) + 24;
+    scrollRef.current.scrollBy({ left: dir * step, behavior: "smooth" });
   };
 
   return (
@@ -31,13 +35,27 @@ export default function CrmShowcase() {
           </button>
 
           <div className="crm-showcase__scroll" ref={scrollRef}>
-            <div className="crm-showcase__track">
-              <div className="crm-showcase__frame">
-                <img src="/images/CRM.png" alt="Panel de control" className="crm-showcase__img" />
-              </div>
-              <div className="crm-showcase__frame">
-                <img src="/images/calendario.png" alt="Calendario de citas" className="crm-showcase__img" />
-              </div>
+            <div className="crm-showcase__frame crm-showcase__frame--wide crm-showcase__frame--nav">
+              <CalendarShowcase />
+              <button
+                className="crm-showcase__nav crm-showcase__nav--next"
+                onClick={() => scroll(1)}
+                aria-label="Ver gestiones del agente"
+              >
+                <ChevronRight size={20} />
+                <span>Gestiones del agente</span>
+              </button>
+            </div>
+            <div className="crm-showcase__frame crm-showcase__frame--wide crm-showcase__frame--nav">
+              <CrmKanbanShowcase />
+              <button
+                className="crm-showcase__nav crm-showcase__nav--prev"
+                onClick={() => scroll(-1)}
+                aria-label="Volver al calendario"
+              >
+                <ChevronLeft size={20} />
+                <span>Calendario</span>
+              </button>
             </div>
           </div>
 

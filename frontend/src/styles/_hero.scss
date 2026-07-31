@@ -6,10 +6,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 7rem 1.5rem 4rem;
+  padding: 13rem 1.5rem 3rem;
   position: relative;
   overflow: hidden;
   background: $text;
+
+  @media (max-width: 920px) {
+    padding: 13.5rem 1.5rem 3rem;
+  }
 
   &__video-wrapper {
     position: absolute;

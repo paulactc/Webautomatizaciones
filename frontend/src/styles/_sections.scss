@@ -674,6 +674,8 @@
 }
 
 .crm-showcase__scroll {
+  display: flex;
+  gap: 1.5rem;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
@@ -684,25 +686,20 @@
   }
 }
 
-.crm-showcase__track {
-  display: flex;
-  gap: 1.5rem;
-  width: max-content;
-
-  .crm-showcase__frame {
-    width: min(78vw, 480px);
-    flex-shrink: 0;
-    scroll-snap-align: start;
-  }
-}
-
 .crm-showcase__frame {
-  width: 100%;
+  flex: 0 0 auto;
+  width: min(78vw, 480px);
+  scroll-snap-align: start;
   overflow: hidden;
   border: 1px solid $border;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
   background: $surface;
   transition: box-shadow 0.3s, transform 0.3s;
+
+  &--wide {
+    flex: 0 0 100%;
+    max-width: 900px;
+  }
 
   &:hover {
     box-shadow: 0 20px 56px rgba(0, 0, 0, 0.2);
@@ -714,6 +711,81 @@
   width: 100%;
   display: block;
   cursor: zoom-in;
+}
+
+.calshow {
+  width: 100%;
+
+  &__frame {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid $border;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    background: $surface;
+  }
+
+  &__day {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    overflow: hidden;
+  }
+
+  &__hint {
+    margin-top: 1.25rem;
+    font-size: 0.95rem;
+    color: $text-muted;
+  }
+}
+
+.crm-showcase__frame--nav {
+  position: relative;
+}
+
+.crm-showcase__nav {
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.95rem;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 999px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+  color: #475569;
+  font-weight: 700;
+  font-size: 0.8rem;
+  cursor: pointer;
+  z-index: 30;
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  span {
+    @media (max-width: 640px) {
+      display: none;
+    }
+  }
+
+  &--next {
+    right: 1rem;
+    &:hover {
+      transform: translateX(3px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
+    }
+  }
+
+  &--prev {
+    left: 1rem;
+    &:hover {
+      transform: translateX(-3px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
+    }
+  }
+}
+
+.crm-kanban {
+  width: 100%;
 }
 
 .crm-showcase__highlights {

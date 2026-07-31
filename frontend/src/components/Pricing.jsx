@@ -21,20 +21,19 @@ const plans = [
     highlight: true,
     features: [
       "Todo lo del Pack Base",
-      "Base de datos de clientes con historial de servicios",
+      "Nueva base de datos de clientes con historial de servicios",
       "Segmentación inteligente para campañas de marketing",
     ],
   },
   {
     name: "Pack a Medida",
-    price: "Desde 1.200 €",
-    monthly: "Consultar",
+    price: "A medida",
+    monthly: "Tras la toma de contacto",
     highlight: false,
     features: [
-      "Automatización completa a tu medida",
-      "Múltiples canales integrados",
-      "Soporte prioritario",
-      "Escalabilidad sin límites",
+      "No es un pack cerrado: es una integración personalizada con el software externo que ya usas",
+      "Tras la toma de contacto te enviamos un presupuesto, según la complejidad de la integración",
+      "Los plazos no son cerrados: dependen de la disponibilidad y tiempos de los proveedores externos",
     ],
   },
 ];
@@ -53,8 +52,13 @@ export default function Pricing() {
             <div key={name} className={`pricing-card${highlight ? " pricing-card--highlight" : ""}`}>
               {highlight && <span className="pricing-card__badge">Recomendado</span>}
               <h3 className="pricing-card__name">{name}</h3>
-              <div className="pricing-card__price">{price.replace(" +IVA", "")} <span className="pricing-card__iva">+IVA</span></div>
-              <div className="pricing-card__monthly">{monthly} <span className="pricing-card__iva">+IVA</span></div>
+              <div className="pricing-card__price">
+                {price.replace(" +IVA", "")}{" "}
+                {price.includes("€") && <span className="pricing-card__iva">+IVA</span>}
+              </div>
+              <div className="pricing-card__monthly">
+                {monthly} {monthly.includes("€") && <span className="pricing-card__iva">+IVA</span>}
+              </div>
               <ul className="pricing-card__features">
                 {features.map((f) => (
                   <li key={f}>

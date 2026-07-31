@@ -1,4 +1,4 @@
-import { Euro, CalendarX, Clock, Headphones, Puzzle, ShieldCheck, Lock, Database, ArrowRight } from "lucide-react";
+import { Euro, Clock, Headphones, Puzzle, ShieldCheck, Lock, Database, ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
 
 const reasons = [
@@ -6,11 +6,6 @@ const reasons = [
     icon: Euro,
     title: "Precio cerrado, sin sorpresas",
     desc: "Sabes exactamente cuánto vas a pagar desde el primer día. Sin horas extra, sin letra pequeña.",
-  },
-  {
-    icon: CalendarX,
-    title: "Sin permanencia",
-    desc: "No te atamos a contratos largos. Si no funciona, no pagas. Confianza mutua.",
   },
   {
     icon: Clock,
