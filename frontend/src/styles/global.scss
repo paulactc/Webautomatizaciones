@@ -2,12 +2,14 @@
 @use "variables" as *;
 @use "navbar";
 @use "hero";
+@use "herochat";
 @use "sections";
 @use "cards";
 @use "contact";
 @use "footer";
 @use "chat";
 @use "components";
+@use "pages";
 
 *,
 *::before,

@@ -71,6 +71,26 @@
     &:hover { opacity: 1; }
   }
 
+  &__ai-badge {
+    background: rgba(#fff, 0.22);
+    border: 1px solid rgba(#fff, 0.4);
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    padding: 0.1rem 0.4rem;
+    border-radius: 6px;
+  }
+
+  &__disclaimer {
+    font-size: 0.68rem;
+    color: $text-muted;
+    text-align: center;
+    padding: 0.35rem 0.75rem;
+    border-top: 1px solid $border;
+    flex-shrink: 0;
+    line-height: 1.4;
+  }
+
   &__messages {
     flex: 1;
     overflow-y: auto;

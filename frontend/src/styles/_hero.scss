@@ -6,8 +6,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  padding: 8rem 1.5rem 3rem;
+  padding: 7rem 1.5rem 4rem;
   position: relative;
   overflow: hidden;
   background: $text;
@@ -32,16 +31,32 @@
     inset: 0;
     background: linear-gradient(
       180deg,
-      rgba($text, 0.15) 0%,
-      rgba($text, 0.6) 60%,
-      rgba($text, 0.9) 100%
+      rgba($text, 0.25) 0%,
+      rgba($text, 0.68) 60%,
+      rgba($text, 0.92) 100%
     );
   }
 
-  &__content {
-    max-width: 720px;
+  &__grid {
     position: relative;
     z-index: 1;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 3.5rem;
+    align-items: center;
+    max-width: 1150px;
+    width: 100%;
+
+    @media (max-width: 920px) {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      max-width: 680px;
+    }
+  }
+
+  &__content {
+    max-width: 620px;
+    text-align: left;
   }
 
   &__name {
@@ -54,7 +69,7 @@
   }
 
   &__title {
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(1.9rem, 4.5vw, 3.2rem);
     font-weight: 800;
     line-height: 1.1;
     letter-spacing: -1.5px;
@@ -64,11 +79,11 @@
   }
 
   &__subtitle {
-    font-size: 0.95rem;
+    font-size: 0.98rem;
     color: #fff;
     max-width: 540px;
-    margin: 0 auto 1rem;
-    line-height: 1.6;
+    margin: 0 0 1.5rem;
+    line-height: 1.65;
     text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
   }
 
@@ -76,8 +91,8 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    justify-content: center;
     margin-top: 1.5rem;
+    justify-content: flex-start;
   }
 
   &__pill {
@@ -98,7 +113,7 @@
   &__actions {
     display: flex;
     gap: 1rem;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
     align-items: center;
   }

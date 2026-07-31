@@ -7,6 +7,11 @@ import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
 import Contact from "./pages/Contact.jsx";
 import Services from "./pages/Services.jsx";
+import Demo from "./pages/Demo.jsx";
+import CalculadoraRoi from "./pages/CalculadoraRoi.jsx";
+import Blog from "./pages/Blog.jsx";
+import BlogPost from "./pages/BlogPost.jsx";
+import Legal from "./pages/Legal.jsx";
 
 export default function App() {
   return (
@@ -18,6 +23,11 @@ export default function App() {
           <Route path="/sobre-mi" element={<About />} />
           <Route path="/servicios" element={<Services />} />
           <Route path="/contacto" element={<Contact />} />
+          <Route path="/demo" element={<Demo />} />
+          <Route path="/calculadora-roi" element={<CalculadoraRoi />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/legal/:slug" element={<Legal />} />
         </Routes>
       </main>
       <Footer />

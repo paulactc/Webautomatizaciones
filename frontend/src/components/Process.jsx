@@ -42,7 +42,7 @@ export default function Process() {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6, delay: 0.15 }}
         >
-          Tres pasos y tu negocio está automatizado.
+          <span className="highlight">Tres pasos</span> y tu negocio está automatizado.
         </motion.p>
         <div className="process__grid">
           {steps.map(({ icon: Icon, number, title, desc }, i) => (
@@ -55,12 +55,13 @@ export default function Process() {
               transition={{ duration: 0.6, delay: i * 0.25 }}
             >
               <div className="process__step-header">
+                <span className="process__ghost-number">{number}</span>
                 <div className="process__icon-wrap">
                   <Icon size={28} strokeWidth={1.5} />
                 </div>
+                <span className="process__number">{number}</span>
               </div>
               <div className="process__step-body">
-                <span className="process__number">{number}</span>
                 <h3 className="process__title">{title}</h3>
                 <p className="process__desc">{desc}</p>
               </div>

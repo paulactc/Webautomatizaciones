@@ -1,6 +1,8 @@
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router";
 import { BlurFade } from "../components/magicui/blur-fade.jsx";
 import WhatsAppIcon from "../components/icons/WhatsAppIcon.jsx";
+import HeroChatMock from "../components/HeroChatMock.jsx";
 import SectorTabs from "../components/SectorTabs.jsx";
 import Pricing from "../components/Pricing.jsx";
 import Process from "../components/Process.jsx";
@@ -27,48 +29,56 @@ export default function Home() {
             playsInline
             poster="/images/CRM.png"
           >
-            <source src="/videos/videowebautomatizaciones.mp4" type="video/mp4" />
+            <source src="/videos/videocoworkeria.mp4" type="video/mp4" />
           </video>
           <div className="hero__video-overlay" />
         </div>
-        <div className="hero__content">
-          <BlurFade delay={0.2} inView>
-            <h1 className="hero__title">
-              Mientras tu negocio responde,<br />
-              <span className="highlight">tú puedes centrarte en hacerlo crecer</span>
-            </h1>
-          </BlurFade>
+        <div className="hero__grid">
+          <div className="hero__content">
+            <BlurFade delay={0.2} inView>
+              <h1 className="hero__title">
+                Mientras tu negocio responde,<br />
+                <span className="highlight">tú puedes centrarte en hacerlo crecer</span>
+              </h1>
+            </BlurFade>
 
-          <BlurFade delay={0.4} inView>
-            <p className="hero__subtitle">
-              Automatizamos tu atención con inteligencia artificial.<br />
-              Tecnología para responder al instante. Personas para resolver lo importante.
-            </p>
-          </BlurFade>
+            <BlurFade delay={0.4} inView>
+              <p className="hero__subtitle">
+                Automatizamos tu atención con inteligencia artificial.<br />
+                Tecnología para responder al instante. Personas para resolver lo importante.
+              </p>
+            </BlurFade>
 
-          <BlurFade delay={0.5} inView>
-            <div className="hero__actions">
-              <a
-                href={`https://wa.me/${WA_NUMBER}?text=${WA_TEXT}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span className="btn btn--primary btn--wa">
-                  <WhatsAppIcon size={20} />
-                  Quiero mi automatización
-                </span>
-              </a>
-              <a href="#planes" className="btn btn--outline">
-                Ver planes <ArrowRight size={16} strokeWidth={2.5} />
-              </a>
-            </div>
-          </BlurFade>
+            <BlurFade delay={0.5} inView>
+              <div className="hero__actions">
+                <a
+                  href={`https://wa.me/${WA_NUMBER}?text=${WA_TEXT}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span className="btn btn--primary btn--wa">
+                    <WhatsAppIcon size={20} />
+                    Quiero mi automatización
+                  </span>
+                </a>
+                <Link to="/demo" className="btn btn--outline">
+                  Pide tu demo <ArrowRight size={16} strokeWidth={2.5} />
+                </Link>
+              </div>
+            </BlurFade>
 
-          <BlurFade delay={0.6} inView>
-            <div className="hero__pills">
-              <span className="hero__pill">Precio cerrado</span>
-              <span className="hero__pill">Activo en 7-10 días</span>
-            </div>
+            <BlurFade delay={0.6} inView>
+              <div className="hero__pills">
+                <span className="hero__pill">Setup desde 500 € + IVA</span>
+                <span className="hero__pill">Desde 50 €/mes + IVA</span>
+                <span className="hero__pill">Precio cerrado</span>
+                <span className="hero__pill">Activo en 7-10 días</span>
+              </div>
+            </BlurFade>
+          </div>
+
+          <BlurFade delay={0.35} inView>
+            <HeroChatMock />
           </BlurFade>
         </div>
       </section>

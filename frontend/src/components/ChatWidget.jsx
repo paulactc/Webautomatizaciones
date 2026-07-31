@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { MessageCircle, X, Send, Bot } from "lucide-react";
 
 const WELCOME =
-  "¡Hola! Soy el asistente de Paula. Pregúntame sobre sus servicios, proyectos o cómo contactarla.";
+  "¡Hola! Soy un asistente con IA de Coworker IA. Te ayudo con información sobre servicios, proyectos y cómo empezar.";
 
 function renderText(text) {
   if (!text) return null;
@@ -58,7 +58,7 @@ export default function ChatWidget() {
           ...prev,
           {
             role: "assistant",
-            content: "He notificado a Paula con tus datos. Te contactará lo antes posible.",
+            content: "He notificado a Coworker IA con tus datos. Te contactarán lo antes posible.",
           },
         ]);
       }
@@ -79,7 +79,8 @@ export default function ChatWidget() {
           <div className="chat-widget__header">
             <div className="chat-widget__header-info">
               <Bot size={20} strokeWidth={2} />
-              <span>Asistente de Paula</span>
+              <span>Asistente de Coworker IA</span>
+              <span className="chat-widget__ai-badge">IA</span>
             </div>
             <button
               className="chat-widget__close"
@@ -119,6 +120,9 @@ export default function ChatWidget() {
               <Send size={18} strokeWidth={2} />
             </button>
           </form>
+          <p className="chat-widget__disclaimer">
+            Asistente con IA · Puede cometer errores. Para asuntos importantes, usa WhatsApp.
+          </p>
         </div>
       )}
 

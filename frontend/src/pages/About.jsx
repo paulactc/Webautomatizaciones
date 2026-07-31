@@ -15,7 +15,7 @@ export default function About() {
         <div className="about__header">
           <img
             src="/images/IMG_20260727_144413.jpg"
-            alt="Paula Castillo Toldos"
+            alt="Coworker IA"
             className="about__photo"
           />
           <h2 className="section-title">Sobre mí</h2>
@@ -24,7 +24,7 @@ export default function About() {
         <div className="about__grid">
           <div className="about__text">
             <p className="about__intro">
-              Paula Castillo Toldos — desarrollo web y automatización con IA para negocios que quieren trabajar más y mejor.
+              Coworker IA — desarrollo web y automatización con IA para negocios que quieren trabajar más y mejor.
             </p>
 
             <p className="about__story">

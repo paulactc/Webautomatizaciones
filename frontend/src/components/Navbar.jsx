@@ -7,6 +7,7 @@ const links = [
   { to: "/servicios", label: "Servicios" },
   { to: "/#sectores", label: "Sectores" },
   { to: "/#planes", label: "Planes" },
+  { to: "/blog", label: "Blog" },
   { to: "/contacto", label: "Contacto" },
 ];
 
@@ -33,7 +34,7 @@ export default function Navbar() {
   return (
     <header className="navbar">
       <a href="/" className="navbar__brand" onClick={(e) => { e.preventDefault(); navigate("/"); }}>
-        <span className="navbar__logo">Paula Castillo</span>
+        <span className="navbar__logo">Coworker IA</span>
         <span className="navbar__tagline">Automatización con IA</span>
       </a>
 

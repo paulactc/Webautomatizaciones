@@ -36,6 +36,13 @@
     max-width: 260px;
   }
 
+  &__brand-legal {
+    font-size: 0.78rem;
+    color: $text-muted;
+    line-height: 1.5;
+    max-width: 260px;
+  }
+
   &__nav {
     display: flex;
     flex-direction: column;
@@ -79,5 +86,17 @@
   &__copy {
     font-size: 0.82rem;
     color: $text-muted;
+
+    &--note {
+      margin-top: 0.4rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+
+      a {
+        color: $accent;
+        text-decoration: underline;
+      }
+    }
   }
 }

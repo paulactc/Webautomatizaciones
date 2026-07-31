@@ -1,4 +1,4 @@
-import { Mail, MapPin } from "lucide-react";
+import { Mail, MapPin, FileText } from "lucide-react";
 import { Link } from "react-router";
 import WhatsAppIcon from "./icons/WhatsAppIcon.jsx";
 import LinkedInIcon from "./icons/LinkedInIcon.jsx";
@@ -11,25 +11,32 @@ export default function Footer() {
       <div className="container">
         <div className="footer__grid">
           <div className="footer__brand">
-            <p className="footer__brand-name">Paula Castillo Toldos</p>
+            <p className="footer__brand-name">Coworker IA</p>
             <p className="footer__brand-desc">
               Automatización con IA para negocios que no pueden perder oportunidades.
+            </p>
+            <p className="footer__brand-legal">
+              Paula Castillo Toldos (autónoma) · Cádiz, España
+              <br />
+              NIF: [pendiente de rellenar]
             </p>
           </div>
 
           <div className="footer__nav">
-            <p className="footer__nav-title">Navegación</p>
-            <Link to="/" className="footer__nav-link">Inicio</Link>
+            <p className="footer__nav-title">Empresa</p>
             <Link to="/servicios" className="footer__nav-link">Servicios</Link>
-            <Link to="/contacto" className="footer__nav-link">Contacto</Link>
+            <Link to="/blog" className="footer__nav-link">Blog</Link>
+            <Link to="/demo" className="footer__nav-link">Demo de 20 min</Link>
+            <Link to="/calculadora-roi" className="footer__nav-link">Calculadora ROI</Link>
+            <Link to="/sobre-mi" className="footer__nav-link">Sobre mí</Link>
           </div>
 
           <div className="footer__nav">
-            <p className="footer__nav-title">Servicios</p>
-            <a href="/#sectores" className="footer__nav-link">Por sector</a>
-            <a href="/#planes" className="footer__nav-link">Planes</a>
-            <Link to="/servicios" className="footer__nav-link">CRM con IA</Link>
-            <Link to="/servicios" className="footer__nav-link">Chatbots</Link>
+            <p className="footer__nav-title">Legal</p>
+            <Link to="/legal/aviso-legal" className="footer__nav-link">Aviso Legal</Link>
+            <Link to="/legal/politica-privacidad" className="footer__nav-link">Política de Privacidad</Link>
+            <Link to="/legal/politica-cookies" className="footer__nav-link">Política de Cookies</Link>
+            <Link to="/legal/terminos-servicio" className="footer__nav-link">Términos y Condiciones</Link>
           </div>
 
           <div className="footer__nav">
@@ -57,14 +64,18 @@ export default function Footer() {
               <LinkedInIcon size={16} /> LinkedIn
             </a>
             <span className="footer__nav-link footer__nav-link--icon">
-              <MapPin size={16} /> España
+              <MapPin size={16} /> Cádiz · trabajando en remoto
             </span>
           </div>
         </div>
 
         <div className="footer__bottom">
           <p className="footer__copy">
-            © {new Date().getFullYear()} Paula Castillo Toldos — Automatización con IA
+            © {new Date().getFullYear()} Coworker IA — Automatización con IA · Paula Castillo Toldos
+          </p>
+          <p className="footer__copy footer__copy--note">
+            <FileText size={13} strokeWidth={2} /> Esta web emplea un asistente de IA en el chat.
+            Consulta nuestra <Link to="/legal/politica-privacidad">Política de Privacidad</Link>.
           </p>
         </div>
       </div>

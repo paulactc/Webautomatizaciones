@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: webautomatizaciones
+    name: coworker-ia
     env: node
     buildCommand: npm install && npm run build
     startCommand: npm start
