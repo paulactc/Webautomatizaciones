@@ -55,7 +55,7 @@ export default function About() {
                 <Mail size={16} strokeWidth={1.5} />
 paulact39@gmail.com
               </a>
-              <a href="tel:722439479" className="about__detail about__detail--link">
+              <a href="tel:600000000" className="about__detail about__detail--link">
                 <Phone size={16} strokeWidth={1.5} />
                 722 439 479
               </a>

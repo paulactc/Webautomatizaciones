@@ -74,7 +74,7 @@ export default function CrmShowcase() {
         </ul>
 
         <a
-          href={`https://wa.me/34722439479?text=${encodeURIComponent("Hola, quiero una demo del panel para mi negocio.")}`}
+          href={`https://wa.me/34600000000?text=${encodeURIComponent("Hola, quiero una demo del panel para mi negocio.")}`}
           target="_blank" rel="noreferrer"
           className="btn btn--primary btn--wa crm-showcase__cta"
         >

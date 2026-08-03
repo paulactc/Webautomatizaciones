@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Send, CheckCircle2 } from "lucide-react";
 import WhatsAppIcon from "../components/icons/WhatsAppIcon.jsx";
 
-const WA_NUMBER = "34722439479";
+const WA_NUMBER = "34600000000";
 const WA_TEXT = encodeURIComponent("Hola, me interesa automatizar mi negocio. ¿Me puedes informar?");
 
 const INITIAL = { name: "", email: "", business: "", phone: "", automate: "" };

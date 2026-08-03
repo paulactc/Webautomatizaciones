@@ -1,6 +1,6 @@
 import WhatsAppIcon from "./icons/WhatsAppIcon.jsx";
 
-const WA_NUMBER = "34722439479";
+const WA_NUMBER = "34600000000";
 const WA_TEXT = encodeURIComponent("Hola, me interesa automatizar mi negocio. ¿Me puedes informar?");
 
 export default function WhatsAppButton() {

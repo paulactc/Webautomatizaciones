@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import WhatsAppIcon from "./icons/WhatsAppIcon.jsx";
 import LinkedInIcon from "./icons/LinkedInIcon.jsx";
 
-const WA_NUMBER = "34722439479";
+const WA_NUMBER = "34600000000";
 
 export default function Footer() {
   return (
