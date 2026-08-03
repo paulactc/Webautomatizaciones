@@ -253,6 +253,37 @@
   margin-inline: auto;
 }
 
+// Process demo (chat en móvil)
+.process__demo {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  text-align: center;
+
+  .herochat {
+    margin: 0 auto;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.22);
+  }
+}
+
+.process__demo-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: $text;
+  line-height: 1.35;
+  max-width: 340px;
+}
+
+.process__demo-caption {
+  font-size: 0.85rem;
+  color: $text-muted;
+  line-height: 1.6;
+  max-width: 300px;
+  margin: 0;
+}
+
 // ── Clients (Logos) ──
 .clients-section {
   padding: 3rem 0;
@@ -732,9 +763,41 @@
   }
 
   &__hint {
-    margin-top: 1.25rem;
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  &__hint-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: $accent;
+
+    svg {
+      color: $accent;
+      opacity: 0.75;
+    }
+  }
+
+  &__hint-text {
     font-size: 0.95rem;
+    line-height: 1.6;
     color: $text-muted;
+    max-width: 340px;
+    margin: 0;
+
+    strong {
+      color: $text;
+      font-weight: 800;
+    }
   }
 }
 

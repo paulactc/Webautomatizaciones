@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router";
+import { Routes, Route, Navigate } from "react-router";
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
 import WhatsAppButton from "./components/WhatsAppButton.jsx";
@@ -8,9 +8,10 @@ import About from "./pages/About.jsx";
 import Contact from "./pages/Contact.jsx";
 import Services from "./pages/Services.jsx";
 import Demo from "./pages/Demo.jsx";
-import CalculadoraRoi from "./pages/CalculadoraRoi.jsx";
+import CalculadoraAhorro from "./pages/CalculadoraAhorro.jsx";
 import Blog from "./pages/Blog.jsx";
 import BlogPost from "./pages/BlogPost.jsx";
+import Testimonios from "./pages/Testimonios.jsx";
 import Legal from "./pages/Legal.jsx";
 
 export default function App() {
@@ -24,9 +25,11 @@ export default function App() {
           <Route path="/servicios" element={<Services />} />
           <Route path="/contacto" element={<Contact />} />
           <Route path="/demo" element={<Demo />} />
-          <Route path="/calculadora-roi" element={<CalculadoraRoi />} />
+          <Route path="/calculadora-ahorro" element={<CalculadoraAhorro />} />
+          <Route path="/calculadora-roi" element={<Navigate to="/calculadora-ahorro" replace />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/testimonios" element={<Testimonios />} />
           <Route path="/legal/:slug" element={<Legal />} />
         </Routes>
       </main>

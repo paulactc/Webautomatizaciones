@@ -5,6 +5,7 @@ const clients = [
 ];
 
 import { MessageCircle } from "lucide-react";
+import { Link } from "react-router";
 
 export default function ClientLogos() {
   return (
@@ -22,10 +23,10 @@ export default function ClientLogos() {
             </div>
           ))}
         </div>
-        <a href="#testimonios" className="clients-section__cta">
+        <Link to="/testimonios" className="clients-section__cta">
           <MessageCircle size={18} strokeWidth={1.5} />
           Lo que dicen mis clientes
-        </a>
+        </Link>
       </div>
     </section>
   );

@@ -7,6 +7,7 @@ const links = [
   { to: "/servicios", label: "Servicios" },
   { to: "/#sectores", label: "Sectores" },
   { to: "/#planes", label: "Planes" },
+  { to: "/calculadora-ahorro", label: "Potencial de ahorro" },
   { to: "/blog", label: "Blog" },
   { to: "/contacto", label: "Contacto" },
 ];

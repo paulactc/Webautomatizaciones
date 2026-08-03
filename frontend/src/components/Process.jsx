@@ -1,5 +1,7 @@
 import { Phone, Wrench, Rocket } from "lucide-react";
 import { motion } from "motion/react";
+import HeroChatMock from "./HeroChatMock.jsx";
+import { useMediaQuery } from "../lib/useMediaQuery.js";
 
 const steps = [
   {
@@ -23,6 +25,8 @@ const steps = [
 ];
 
 export default function Process() {
+  const isMobile = useMediaQuery("(max-width: 920px)");
+
   return (
     <section className="page-section process-section">
       <div className="container">
@@ -68,6 +72,24 @@ export default function Process() {
             </motion.div>
           ))}
         </div>
+
+        {isMobile && (
+          <motion.div
+            className="process__demo"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <h3 className="process__demo-title">
+              Así responde tu negocio <span className="highlight">mientras tú no estás</span>
+            </h3>
+            <HeroChatMock />
+            <p className="process__demo-caption">
+              Una conversación real atendida al instante por tu agente IA.
+            </p>
+          </motion.div>
+        )}
       </div>
     </section>
   );

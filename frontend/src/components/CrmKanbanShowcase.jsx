@@ -1,16 +1,15 @@
-import { CheckCircle2, Clock, MessageCircle, Users, LayoutDashboard } from "lucide-react";
+import { CheckCircle2, Calendar, Users, LayoutDashboard } from "lucide-react";
 import { cn } from "../lib/utils";
 
 const COLUMNS = [
   {
     id: "citas",
-    title: "Citas agendadas",
-    icon: CheckCircle2,
-    grad: "from-emerald-500 to-emerald-600",
-    body: "bg-emerald-50/70",
-    bar: "border-emerald-500",
-    pill: "bg-emerald-100 text-emerald-700",
-    iconColor: "text-emerald-500",
+    title: "CITAS AGENDADAS",
+    border: "border-t-blue-500",
+    bg: "bg-blue-50",
+    text: "text-blue-700",
+    dot: "bg-blue-500",
+    iconColor: "text-blue-500",
     count: 3,
     cards: [
       { pet: "Luka", service: "Vacunación", meta: "Lun 12 · 17:00", note: "Confirmada por WhatsApp", done: true },
@@ -20,12 +19,11 @@ const COLUMNS = [
   },
   {
     id: "consultas",
-    title: "Consultas tramitadas",
-    icon: MessageCircle,
-    grad: "from-violet-500 to-violet-600",
-    body: "bg-violet-50/70",
-    bar: "border-violet-500",
-    pill: "bg-violet-100 text-violet-700",
+    title: "CONSULTAS TRAMITADAS",
+    border: "border-t-violet-500",
+    bg: "bg-violet-50",
+    text: "text-violet-700",
+    dot: "bg-violet-500",
     iconColor: "text-violet-500",
     count: 3,
     cards: [
@@ -36,13 +34,12 @@ const COLUMNS = [
   },
   {
     id: "equipo",
-    title: "Equipo humano",
-    icon: Users,
-    grad: "from-amber-500 to-orange-500",
-    body: "bg-amber-50/70",
-    bar: "border-amber-500",
-    pill: "bg-amber-100 text-amber-700",
-    iconColor: "text-amber-500",
+    title: "EQUIPO HUMANO",
+    border: "border-t-orange-500",
+    bg: "bg-orange-50",
+    text: "text-orange-700",
+    dot: "bg-orange-500",
+    iconColor: "text-orange-500",
     count: 2,
     cards: [
       { pet: "Carmen", service: "Factura a empresa", meta: "Requiere tu revisión", note: "Aprobación necesaria", done: false },
@@ -53,55 +50,55 @@ const COLUMNS = [
 
 export default function CrmKanbanShowcase() {
   return (
-    <div className="crm-kanban">
-      <div className="bg-white px-3.5 py-3 flex items-center justify-between gap-3 border-b border-gray-200">
-        <div className="flex items-center gap-2.5 min-w-0">
-          <span className="w-8 h-8 md:w-9 md:h-9 rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-white shrink-0">
-            <LayoutDashboard size={17} strokeWidth={2.5} />
+    <div className="crm-kanban bg-white">
+      <div className="flex items-center justify-between px-5 py-4 border-b border-slate-200 bg-white">
+        <div className="flex items-center gap-3 min-w-0">
+          <span className="w-9 h-9 rounded-lg bg-blue-600 flex items-center justify-center text-white shrink-0">
+            <LayoutDashboard size={18} strokeWidth={2.5} />
           </span>
           <div className="min-w-0">
-            <div className="text-gray-900 font-extrabold text-sm leading-tight">Gestiones del agente</div>
-            <div className="text-gray-500 text-[11px]">La IA resuelve lo que puede y te deja lo que necesita tu criterio</div>
+            <div className="text-base font-semibold text-slate-900 leading-tight">Gestiones del agente</div>
+            <div className="text-xs text-slate-500 leading-snug">La IA resuelve lo que puede y te deja lo que necesita tu criterio</div>
           </div>
         </div>
-        <span className="text-[11px] font-bold text-amber-700 bg-amber-100 border border-amber-200 px-2.5 py-1 rounded-full shrink-0 hidden sm:inline">
+        <span className="text-xs font-medium text-blue-700 bg-blue-50 px-2.5 py-1 rounded shrink-0 hidden sm:inline">
           IA + equipo
         </span>
       </div>
 
-      <div className="grid grid-cols-1 gap-3 p-3 bg-gray-100/70">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 bg-slate-50">
         {COLUMNS.map((col) => (
-          <div key={col.id} className="flex flex-col">
-            <div className={cn("rounded-t-md bg-gradient-to-r px-3 py-2.5 flex items-center gap-2 text-white shadow-sm", col.grad)}>
-              <col.icon size={15} strokeWidth={2.5} className="shrink-0" />
-              <span className="font-extrabold text-[12px] uppercase tracking-wider leading-tight">{col.title}</span>
-              <span className="ml-auto min-w-[20px] h-[18px] px-1.5 rounded-full bg-white text-gray-900 flex items-center justify-center text-[11px] font-extrabold shrink-0 shadow-sm">
+          <div key={col.id} className={cn("flex flex-col min-w-0 bg-slate-100/70 rounded-md border-t-4", col.border)}>
+            <div className="flex items-center justify-between px-4 py-3.5">
+              <div className="flex items-center gap-3 min-w-0">
+                <span className={cn("w-3 h-3 rounded-full shrink-0", col.dot)} />
+                <h4 className="text-sm font-bold text-slate-800 leading-tight">{col.title}</h4>
+              </div>
+              <span className={cn("text-sm font-bold px-2 py-0.5 rounded-full shrink-0", col.bg, col.text)}>
                 {col.count}
               </span>
             </div>
 
-            <div className={cn("rounded-b-md flex-1 p-2 flex flex-col gap-1.5", col.body)}>
+            <div className="flex-1 px-3 pb-3 space-y-2">
               {col.cards.map((card) => (
-                <div
-                  key={card.pet + card.service}
-                  className={cn(
-                    "bg-white rounded-md border border-gray-200 border-l-4 px-3 py-2.5 shadow-sm",
-                    col.bar
-                  )}
-                >
-                  <div className="flex items-start justify-between gap-2 flex-wrap">
-                    <span className="font-bold text-gray-900 text-[13px] leading-tight">{card.pet}</span>
-                    <span className={cn("text-[10px] font-bold px-1.5 py-0.5 rounded shrink-0", col.pill)}>
+                <div key={card.pet + card.service} className="bg-white rounded-lg p-3 shadow-sm border border-slate-200">
+                  <div className="flex items-center justify-between gap-2 mb-1.5">
+                    <span className="text-sm font-bold text-slate-900 truncate">{card.pet}</span>
+                    <span className={cn("text-[11px] font-semibold px-2 py-0.5 rounded shrink-0", col.bg, col.text)}>
                       {card.service}
                     </span>
                   </div>
-                  <div className="flex items-center gap-1 text-gray-400 text-[11px] mt-1">
-                    <Clock size={11} className="shrink-0" />
-                    <span>{card.meta}</span>
+                  <div className="flex items-center gap-1.5 text-sm text-slate-700 mb-1.5">
+                    <Calendar size={14} className="text-slate-400 shrink-0" />
+                    <span className="truncate">{card.meta}</span>
                   </div>
-                  <div className={cn("flex items-center gap-1 text-[11px] mt-1.5 font-medium", card.done ? "text-gray-600" : "text-amber-600")}>
-                    {card.done ? <CheckCircle2 size={12} className={cn("shrink-0", col.iconColor)} /> : <Users size={12} className="shrink-0" />}
-                    <span>{card.note}</span>
+                  <div className={cn("flex items-center gap-1.5 pt-1.5 border-t border-slate-100 text-sm", card.done ? "text-slate-600" : "text-orange-600 font-medium")}>
+                    {card.done ? (
+                      <CheckCircle2 size={14} className={cn("shrink-0", col.iconColor)} />
+                    ) : (
+                      <Users size={14} className="shrink-0 text-orange-500" />
+                    )}
+                    <span className="truncate">{card.note}</span>
                   </div>
                 </div>
               ))}
@@ -110,7 +107,7 @@ export default function CrmKanbanShowcase() {
         ))}
       </div>
 
-      <div className="px-3.5 py-2.5 border-t border-gray-200 bg-white text-center text-[11px] font-semibold text-gray-500">
+      <div className="px-5 py-3 border-t border-slate-200 bg-white text-center text-xs font-medium text-slate-500">
         Tú decides qué tramita la IA y qué requiere tu equipo humano
       </div>
     </div>

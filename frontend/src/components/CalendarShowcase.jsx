@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import { CalendarCheck2 } from "lucide-react";
 import { cn } from "../lib/utils";
 
 const WEEKDAYS = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"];
@@ -320,9 +321,15 @@ export default function CalendarShowcase() {
         </AnimatePresence>
       </div>
 
-      <p className="calshow__hint">
-        Así se ve tu agenda desde fuera: <strong>entra, resuelve y cierra</strong> sin tocar el teléfono.
-      </p>
+      <div className="calshow__hint">
+        <span className="calshow__hint-label">
+          <CalendarCheck2 size={15} strokeWidth={2} />
+          Vista del cliente
+        </span>
+        <p className="calshow__hint-text">
+          Así se ve tu agenda desde fuera: <strong>entra, resuelve y cierra</strong> sin tocar el teléfono.
+        </p>
+      </div>
     </div>
   );
 }

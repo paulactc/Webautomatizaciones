@@ -114,7 +114,7 @@ export const posts = [
       },
       {
         h: "¿Cuánto cuesta NO automatizar?",
-        p: "Cada WhatsApp sin responder en el momento es un cliente que puede irse a la competencia. Si valoras tu tiempo en 20 €/h y respondes 80 mensajes a la semana de 5 minutos cada uno, hablamos de más de 6 horas semanales: unos 570 €/mes solo en atención manual. Con tu calculadora de ROI puedes verlo con tus propios números.",
+        p: "Cada WhatsApp sin responder en el momento es un cliente que puede irse a la competencia. Si valoras tu tiempo en 20 €/h y respondes 80 mensajes a la semana de 5 minutos cada uno, hablamos de más de 6 horas semanales: unos 570 €/mes solo en atención manual. Con tu calculadora de ahorro puedes verlo con tus propios números.",
       },
       {
         h: "Sin permanencia ni sorpresas",

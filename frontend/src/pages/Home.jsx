@@ -7,15 +7,17 @@ import SectorTabs from "../components/SectorTabs.jsx";
 import Pricing from "../components/Pricing.jsx";
 import Process from "../components/Process.jsx";
 import Faq from "../components/Faq.jsx";
-import Testimonials from "../components/Testimonials.jsx";
 import CrmShowcase from "../components/CrmShowcase.jsx";
 import WhyMe from "../components/WhyMe.jsx";
 import ClientLogos from "../components/ClientLogos.jsx";
+import { useMediaQuery } from "../lib/useMediaQuery.js";
 
 const WA_NUMBER = "34722439479";
 const WA_TEXT = encodeURIComponent("Hola, me interesa automatizar mi negocio. ¿Me puedes informar?");
 
 export default function Home() {
+  const isMobile = useMediaQuery("(max-width: 920px)");
+
   return (
     <>
       {/* ── Hero ── */}
@@ -69,17 +71,17 @@ export default function Home() {
 
             <BlurFade delay={0.6} inView>
               <div className="hero__pills">
-                <span className="hero__pill">Setup desde 500 € + IVA</span>
-                <span className="hero__pill">Desde 50 €/mes + IVA</span>
                 <span className="hero__pill">Precio cerrado</span>
                 <span className="hero__pill">Activo en 7-10 días</span>
               </div>
             </BlurFade>
           </div>
 
-          <BlurFade delay={0.35} inView>
-            <HeroChatMock />
-          </BlurFade>
+          {!isMobile && (
+            <BlurFade delay={0.35} inView>
+              <HeroChatMock />
+            </BlurFade>
+          )}
         </div>
       </section>
 
@@ -115,9 +117,6 @@ export default function Home() {
 
       {/* ── Cómo funciona ── */}
       <Process />
-
-      {/* ── Testimonios ── */}
-      <Testimonials />
 
       {/* ── Por qué elegirme ── */}
       <WhyMe />
