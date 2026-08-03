@@ -1,56 +1,225 @@
-import { CheckCircle2, Calendar, Users, LayoutDashboard } from "lucide-react";
+import { Phone, Calendar, Users, Sun, LayoutDashboard } from "lucide-react";
 import { cn } from "../lib/utils";
 
-const COLUMNS = [
+const hoy = new Date().toISOString().split("T")[0];
+
+const columnColors = {
+  informados: { top: "border-t-blue-500", count: "bg-blue-500", tint: "bg-blue-50", text: "text-blue-700" },
+  programados: { top: "border-t-amber-500", count: "bg-amber-500", tint: "bg-amber-50", text: "text-amber-700" },
+  ia_respondidas: { top: "border-t-violet-500", count: "bg-violet-500", tint: "bg-violet-50", text: "text-violet-700" },
+  equipo_humano: { top: "border-t-orange-500", count: "bg-orange-500", tint: "bg-orange-50", text: "text-orange-700" },
+};
+
+const statusLabels = {
+  informados: "Huéspedes informados",
+  programados: "Programados para informar",
+  ia_respondidas: "Respondidas automáticamente",
+  equipo_humano: "Pendientes equipo humano",
+};
+
+function calcDias(checkIn, checkOut) {
+  if (!checkIn || !checkOut) return null;
+  const inicio = new Date(checkIn);
+  const fin = new Date(checkOut);
+  return Math.ceil((fin - inicio) / (1000 * 60 * 60 * 24));
+}
+
+function formatFecha(iso) {
+  if (!iso) return "";
+  const [y, m, d] = iso.split("-");
+  return `${d}/${m}`;
+}
+
+function toISO(diaOffset) {
+  const dt = new Date();
+  dt.setDate(dt.getDate() + diaOffset);
+  return dt.toISOString().split("T")[0];
+}
+
+const CONTACTS = [
   {
-    id: "citas",
-    title: "CITAS AGENDADAS",
-    border: "border-t-blue-500",
-    bg: "bg-blue-50",
-    text: "text-blue-700",
-    dot: "bg-blue-500",
-    iconColor: "text-blue-500",
-    count: 3,
-    cards: [
-      { pet: "Luka", service: "Vacunación", meta: "Lun 12 · 17:00", note: "Confirmada por WhatsApp", done: true },
-      { pet: "Rocky", service: "Revisión", meta: "Mar 13 · 11:00", note: "Confirmada por WhatsApp", done: true },
-      { pet: "Nala", service: "Urgencia", meta: "Jue 6 · 17:00", note: "Recordatorio enviado", done: true },
-    ],
+    id: "ct1",
+    name: "Carlos Demo Uno",
+    phone: "600 000 011",
+    status: "programados",
+    checkIn: toISO(-2),
+    checkOut: toISO(3),
+    adultos: 2,
+    ninos: 2,
   },
   {
-    id: "consultas",
-    title: "CONSULTAS TRAMITADAS",
-    border: "border-t-violet-500",
-    bg: "bg-violet-50",
-    text: "text-violet-700",
-    dot: "bg-violet-500",
-    iconColor: "text-violet-500",
-    count: 3,
-    cards: [
-      { pet: "Marta", service: "Cambio de cita", meta: "Luka → lunes 12", note: "Reagendada automáticamente", done: true },
-      { pet: "Javi", service: "Presupuesto", meta: "WhatsApp", note: "Presupuesto y enlace de pago enviados", done: true },
-      { pet: "Lucía", service: "Horario", meta: "Fin de semana", note: "Horario de sábado respondido", done: true },
-    ],
+    id: "ct2",
+    name: "María Demo Dos",
+    phone: "600 000 012",
+    status: "programados",
+    checkIn: toISO(5),
+    checkOut: toISO(10),
+    adultos: 2,
+    ninos: 0,
   },
   {
-    id: "equipo",
-    title: "EQUIPO HUMANO",
-    border: "border-t-orange-500",
-    bg: "bg-orange-50",
-    text: "text-orange-700",
-    dot: "bg-orange-500",
-    iconColor: "text-orange-500",
-    count: 2,
-    cards: [
-      { pet: "Carmen", service: "Factura a empresa", meta: "Requiere tu revisión", note: "Aprobación necesaria", done: false },
-      { pet: "Adrián", service: "Descuento cliente fiel", meta: "Requiere tu revisión", note: "Decide tú y la IA aplica", done: false },
-    ],
+    id: "ct3",
+    name: "Juan Demo Tres",
+    phone: "600 000 013",
+    status: "ia_respondidas",
+    checkIn: toISO(15),
+    checkOut: toISO(20),
+    adultos: 4,
+    ninos: 3,
+  },
+  {
+    id: "ct4",
+    name: "Ana Demo Cuatro",
+    phone: "600 000 014",
+    status: "informados",
+    checkIn: toISO(8),
+    checkOut: toISO(12),
+    adultos: 2,
+    ninos: 1,
+  },
+  {
+    id: "ct5",
+    name: "Roberto Demo Cinco",
+    phone: "600 000 015",
+    status: "equipo_humano",
+    checkIn: toISO(0),
+    checkOut: toISO(7),
+    adultos: 2,
+    ninos: 0,
+  },
+  {
+    id: "ct6",
+    name: "Laura Demo Seis",
+    phone: "600 000 016",
+    status: "programados",
+    checkIn: toISO(3),
+    checkOut: toISO(10),
+    adultos: 5,
+    ninos: 3,
+  },
+  {
+    id: "ct7",
+    name: "Diego Demo Siete",
+    phone: "600 000 017",
+    status: "ia_respondidas",
+    checkIn: toISO(12),
+    checkOut: toISO(15),
+    adultos: 2,
+    ninos: 2,
+  },
+  {
+    id: "ct8",
+    name: "Sofía Demo Ocho",
+    phone: "600 000 018",
+    status: "informados",
+    checkIn: toISO(20),
+    checkOut: toISO(24),
+    adultos: 2,
+    ninos: 0,
+  },
+  {
+    id: "ct9",
+    name: "Pedro Demo Nueve",
+    phone: "600 000 019",
+    status: "equipo_humano",
+    checkIn: toISO(1),
+    checkOut: toISO(5),
+    adultos: 6,
+    ninos: 0,
+  },
+  {
+    id: "ct10",
+    name: "Valentina Demo Diez",
+    phone: "600 000 020",
+    status: "programados",
+    checkIn: toISO(-1),
+    checkOut: toISO(4),
+    adultos: 2,
+    ninos: 2,
   },
 ];
 
+const STATUSES = ["informados", "programados", "ia_respondidas", "equipo_humano"];
+
+function KanbanCard({ contact }) {
+  const activa = contact.checkIn <= hoy && contact.checkOut >= hoy;
+  const totalPersonas = (contact.adultos || 0) + (contact.ninos || 0);
+  const dias = calcDias(contact.checkIn, contact.checkOut);
+  const colors = columnColors[contact.status] || columnColors.informados;
+
+  return (
+    <div className={cn("bg-white border border-slate-200 border-l-4 rounded-[12px] shadow-sm overflow-hidden", colors.top)}>
+      <div className={cn("flex items-center px-3 py-2 border-b border-slate-200", colors.tint)}>
+        <span className="text-[0.85rem] font-bold text-slate-900 truncate">{contact.name}</span>
+      </div>
+
+      <div className="px-3 py-2 flex flex-col gap-1.5">
+        <div className="flex items-center gap-1.5 text-sm text-slate-700">
+          <Phone size={14} className="text-slate-400 shrink-0" />
+          <span>{contact.phone}</span>
+        </div>
+
+        {contact.checkIn && (
+          <div className="flex items-center gap-1.5 text-sm font-medium text-slate-800">
+            <Calendar size={14} className="text-slate-400 shrink-0" />
+            <span>{formatFecha(contact.checkIn)} → {formatFecha(contact.checkOut)}</span>
+          </div>
+        )}
+      </div>
+
+      <div className="flex items-center justify-between gap-2 px-3 py-2 border-t border-slate-100 text-sm">
+        <div className="flex items-center gap-1.5 text-slate-600 min-w-0">
+          <Users size={14} className="text-slate-400 shrink-0" />
+          <span>{totalPersonas} pers.</span>
+          <span className="text-slate-400">({contact.adultos || 0}a {contact.ninos || 0}n)</span>
+        </div>
+        <div className="flex items-center gap-2 shrink-0">
+          {activa && (
+            <span className="text-[11px] font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded uppercase">
+              Activa
+            </span>
+          )}
+          {dias !== null && (
+            <div className="flex items-center gap-1 text-blue-700 font-semibold">
+              <Sun size={14} />
+              <span>{dias} {dias === 1 ? "día" : "días"}</span>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function KanbanColumn({ status, contacts }) {
+  const colors = columnColors[status];
+
+  return (
+    <div className={cn("flex flex-col flex-1 min-w-[280px] max-w-[340px] bg-slate-50 border border-slate-200 rounded-[10px] overflow-hidden")}>
+      <div className={cn("flex items-center justify-between gap-2 px-4 py-3 bg-white border-b border-slate-200 border-t-4", colors.top)}>
+        <h3 className="text-[0.82rem] font-extrabold uppercase tracking-[0.04em] text-slate-900 whitespace-nowrap">
+          {statusLabels[status]}
+        </h3>
+        <span className={cn("text-base font-black text-white px-2.5 py-0.5 rounded-full min-w-[28px] text-center leading-6", colors.count)}>
+          {contacts.length}
+        </span>
+      </div>
+
+      <div className="flex flex-col flex-1 p-2 gap-2 overflow-y-auto">
+        {contacts.map((contact) => (
+          <KanbanCard key={contact.id} contact={contact} />
+        ))}
+        {contacts.length === 0 && (
+          <div className="text-center text-slate-300 text-xs italic py-6">Sin huéspedes</div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function CrmKanbanShowcase() {
   return (
-    <div className="crm-kanban bg-white">
+    <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
       <div className="flex items-center justify-between px-5 py-4 border-b border-slate-200 bg-white">
         <div className="flex items-center gap-3 min-w-0">
           <span className="w-9 h-9 rounded-lg bg-blue-600 flex items-center justify-center text-white shrink-0">
@@ -66,49 +235,14 @@ export default function CrmKanbanShowcase() {
         </span>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 bg-slate-50">
-        {COLUMNS.map((col) => (
-          <div key={col.id} className={cn("flex flex-col min-w-0 bg-slate-100/70 rounded-md border-t-4", col.border)}>
-            <div className="flex items-center justify-between px-4 py-3.5">
-              <div className="flex items-center gap-3 min-w-0">
-                <span className={cn("w-3 h-3 rounded-full shrink-0", col.dot)} />
-                <h4 className="text-sm font-bold text-slate-800 leading-tight">{col.title}</h4>
-              </div>
-              <span className={cn("text-sm font-bold px-2 py-0.5 rounded-full shrink-0", col.bg, col.text)}>
-                {col.count}
-              </span>
-            </div>
-
-            <div className="flex-1 px-3 pb-3 space-y-2">
-              {col.cards.map((card) => (
-                <div key={card.pet + card.service} className="bg-white rounded-lg p-3 shadow-sm border border-slate-200">
-                  <div className="flex items-center justify-between gap-2 mb-1.5">
-                    <span className="text-sm font-bold text-slate-900 truncate">{card.pet}</span>
-                    <span className={cn("text-[11px] font-semibold px-2 py-0.5 rounded shrink-0", col.bg, col.text)}>
-                      {card.service}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-1.5 text-sm text-slate-700 mb-1.5">
-                    <Calendar size={14} className="text-slate-400 shrink-0" />
-                    <span className="truncate">{card.meta}</span>
-                  </div>
-                  <div className={cn("flex items-center gap-1.5 pt-1.5 border-t border-slate-100 text-sm", card.done ? "text-slate-600" : "text-orange-600 font-medium")}>
-                    {card.done ? (
-                      <CheckCircle2 size={14} className={cn("shrink-0", col.iconColor)} />
-                    ) : (
-                      <Users size={14} className="shrink-0 text-orange-500" />
-                    )}
-                    <span className="truncate">{card.note}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+      <div className="flex items-start gap-2.5 p-4 overflow-x-auto bg-slate-50">
+        {STATUSES.map((status) => (
+          <KanbanColumn
+            key={status}
+            status={status}
+            contacts={CONTACTS.filter((c) => c.status === status)}
+          />
         ))}
-      </div>
-
-      <div className="px-5 py-3 border-t border-slate-200 bg-white text-center text-xs font-medium text-slate-500">
-        Tú decides qué tramita la IA y qué requiere tu equipo humano
       </div>
     </div>
   );

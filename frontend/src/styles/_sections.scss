@@ -712,6 +712,13 @@
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 2.5rem;
+    overflow-x: visible;
+    scroll-snap-type: none;
+  }
+
   &::-webkit-scrollbar {
     display: none;
   }
@@ -730,6 +737,13 @@
   &--wide {
     flex: 0 0 100%;
     max-width: 900px;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 100%;
+    flex: 0 0 auto;
+    overflow: visible;
   }
 
   &:hover {
@@ -823,6 +837,10 @@
   cursor: pointer;
   z-index: 30;
   transition: transform 0.2s, box-shadow 0.2s;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 
   span {
     @media (max-width: 640px) {
