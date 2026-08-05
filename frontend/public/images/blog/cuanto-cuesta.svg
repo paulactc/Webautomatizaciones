@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9e4f1e"/>
+      <stop offset="0.55" stop-color="#c4652a"/>
+      <stop offset="1" stop-color="#e8915a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1080" cy="130" r="240" fill="#ffffff" opacity="0.08"/>
+  <circle cx="120" cy="520" r="230" fill="#ffffff" opacity="0.07"/>
+  <rect x="400" y="0" width="400" height="400" transform="rotate(45 600 200)" fill="#f0e4d4" opacity="0.10"/>
+  <g transform="translate(90,150)">
+    <text x="0" y="0" font-family="Inter, system-ui, sans-serif" font-size="30" font-weight="700" letter-spacing="6" fill="#f0e4d4" opacity="0.9">COWORKER IA</text>
+    <text x="0" y="150" font-family="Inter, system-ui, sans-serif" font-size="96" font-weight="800" fill="#ffffff" letter-spacing="-2">Cuánto cuesta</text>
+    <text x="0" y="250" font-family="Inter, system-ui, sans-serif" font-size="96" font-weight="800" fill="#ffffff" letter-spacing="-2">automatizar</text>
+    <text x="0" y="330" font-family="Inter, system-ui, sans-serif" font-size="34" fill="#f0e4d4">Y cuánto cuesta no hacerlo</text>
+  </g>
+</svg>

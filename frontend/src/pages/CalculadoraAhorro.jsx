@@ -10,6 +10,7 @@ const QUESTIONS = [
   {
     id: "mensajes",
     label: "¿Cuántos mensajes te llegan a la semana?",
+    hint: "Los de \"¿a qué hora abrís?\", los de \"¿tenéis hueco el jueves?\" y ese cliente que te pregunta siempre lo mismo.",
     min: 10,
     max: 500,
     step: 10,
@@ -18,6 +19,7 @@ const QUESTIONS = [
   {
     id: "minutos",
     label: "¿Cuántos minutos tardas en responder cada mensaje?",
+    hint: "Los que pasan entre que lo ves a medias, te interrumpen y vuelves a responder al cabo de un rato.",
     min: 1,
     max: 15,
     step: 1,
@@ -26,6 +28,7 @@ const QUESTIONS = [
   {
     id: "costeHora",
     label: "¿Cuánto vale tu hora de trabajo?",
+    hint: "Piensa en lo que facturarías si ese tiempo lo dedicases a atender o a vender, en lugar de a contestar.",
     min: 8,
     max: 60,
     step: 1,
@@ -34,6 +37,7 @@ const QUESTIONS = [
   {
     id: "citasPerdidas",
     label: "Citas o ventas que pierdes al mes",
+    hint: "El que no te respondió, el que se cansó de esperar y el que al final se fue a la competencia.",
     min: 0,
     max: 30,
     step: 1,
@@ -42,6 +46,7 @@ const QUESTIONS = [
   {
     id: "valorCita",
     label: "¿Cuánto vale cada cita?",
+    hint: "El ticket medio que se deja un cliente cada vez que viene o compra.",
     min: 10,
     max: 150,
     step: 5,
@@ -115,6 +120,7 @@ export default function CalculadoraAhorro() {
                   transition={{ duration: 0.25, ease: "easeOut" }}
                 >
                   <h3 className="calcwiz__label">{question.label}</h3>
+                  {question.hint && <p className="calcwiz__hint">{question.hint}</p>}
                   <span className="calcwiz__value">{question.format(values[question.id])}</span>
                   <input
                     type="range"

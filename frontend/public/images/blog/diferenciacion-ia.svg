@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9e4f1e"/>
+      <stop offset="0.55" stop-color="#c4652a"/>
+      <stop offset="1" stop-color="#e8915a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="160" cy="120" r="250" fill="#ffffff" opacity="0.08"/>
+  <circle cx="1040" cy="540" r="220" fill="#ffffff" opacity="0.07"/>
+  <circle cx="940" cy="190" r="90" fill="#f0e4d4" opacity="0.14"/>
+  <circle cx="210" cy="470" r="70" fill="#f0e4d4" opacity="0.14"/>
+  <g transform="translate(90,150)">
+    <text x="0" y="0" font-family="Inter, system-ui, sans-serif" font-size="30" font-weight="700" letter-spacing="6" fill="#f0e4d4" opacity="0.9">COWORKER IA</text>
+    <text x="0" y="150" font-family="Inter, system-ui, sans-serif" font-size="96" font-weight="800" fill="#ffffff" letter-spacing="-2">Diferénciate</text>
+    <text x="0" y="250" font-family="Inter, system-ui, sans-serif" font-size="96" font-weight="800" fill="#ffffff" letter-spacing="-2">con IA</text>
+    <text x="0" y="330" font-family="Inter, system-ui, sans-serif" font-size="34" fill="#f0e4d4">Cuando todos la usan, la ventaja está en cómo la aplicas</text>
+  </g>
+</svg>

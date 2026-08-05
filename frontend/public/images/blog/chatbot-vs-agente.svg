@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9e4f1e"/>
+      <stop offset="0.55" stop-color="#c4652a"/>
+      <stop offset="1" stop-color="#e8915a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1050" cy="520" r="270" fill="#ffffff" opacity="0.08"/>
+  <circle cx="180" cy="480" r="180" fill="#ffffff" opacity="0.06"/>
+  <rect x="780" y="90" width="280" height="190" rx="24" fill="#ffffff" opacity="0.12"/>
+  <rect x="120" y="90" width="280" height="190" rx="24" fill="#ffffff" opacity="0.10"/>
+  <g transform="translate(90,330)">
+    <text x="0" y="0" font-family="Inter, system-ui, sans-serif" font-size="30" font-weight="700" letter-spacing="6" fill="#f0e4d4" opacity="0.9">COWORKER IA</text>
+    <text x="0" y="120" font-family="Inter, system-ui, sans-serif" font-size="88" font-weight="800" fill="#ffffff" letter-spacing="-2">Bot o agente?</text>
+    <text x="0" y="230" font-family="Inter, system-ui, sans-serif" font-size="34" fill="#f0e4d4">La diferencia que nota tu cliente</text>
+  </g>
+</svg>

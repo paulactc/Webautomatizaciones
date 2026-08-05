@@ -18,6 +18,9 @@ export default function BlogPost() {
         </Link>
 
         <article className="blog-post">
+          {post.image && (
+            <img src={post.image} alt={post.title} className="blog-post__cover" />
+          )}
           <header className="blog-post__header">
             <span className="blog-card__category">{post.category}</span>
             <h2 className="section-title blog-post__title">{post.title}</h2>
@@ -29,9 +32,15 @@ export default function BlogPost() {
           </header>
 
           <div className="blog-post__content">
-            {post.sections.map(({ h, p, list }) => (
+            {post.sections.map(({ h, p, p2, list, quote, img, imgAlt, imgCaption }) => (
               <section key={h}>
                 <h3 className="blog-post__h">{h}</h3>
+                {img && (
+                  <figure className="blog-post__figure">
+                    <img src={img} alt={imgAlt || h} loading="lazy" />
+                    {imgCaption && <figcaption>{imgCaption}</figcaption>}
+                  </figure>
+                )}
                 {p && <p className="blog-post__p">{p}</p>}
                 {list && (
                   <ul className="blog-post__list">
@@ -40,6 +49,13 @@ export default function BlogPost() {
                     ))}
                   </ul>
                 )}
+                {quote && (
+                  <blockquote className="blog-post__quote">
+                    <p>{quote.text}</p>
+                    <cite>{quote.source}</cite>
+                  </blockquote>
+                )}
+                {p2 && <p className="blog-post__p">{p2}</p>}
               </section>
             ))}
           </div>
