@@ -9,6 +9,7 @@ import Process from "../components/Process.jsx";
 import Faq from "../components/Faq.jsx";
 import CrmShowcase from "../components/CrmShowcase.jsx";
 import WhyMe from "../components/WhyMe.jsx";
+import AgentFeatures from "../components/AgentFeatures.jsx";
 import ClientLogos from "../components/ClientLogos.jsx";
 import { useMediaQuery } from "../lib/useMediaQuery.js";
 
@@ -73,6 +74,7 @@ export default function Home() {
               <div className="hero__pills">
                 <span className="hero__pill">Precio cerrado</span>
                 <span className="hero__pill">Activo en 7-10 días</span>
+                <span className="hero__pill">Sin permanencia</span>
               </div>
             </BlurFade>
           </div>
@@ -118,6 +120,9 @@ export default function Home() {
       {/* ── Cómo funciona ── */}
       <Process />
 
+      {/* ── Qué hace el agente ── */}
+      <AgentFeatures />
+
       {/* ── Por qué elegirme ── */}
       <WhyMe />
 
@@ -126,23 +131,30 @@ export default function Home() {
 
       {/* ── CTA final ── */}
       <section className="cta-final">
-        <div className="container container--narrow">
+        <div className="container cta-final__inner">
           <h2 className="cta-final__title">
-            Tu negocio puede empezar a trabajar solo <span className="highlight">esta semana</span>
+            Desconecta por fin.<br />
+            <span className="highlight">Tu negocio se encarga.</span>
           </h2>
           <p className="cta-final__subtitle">
-            Escríbenos por WhatsApp o déjanos tus datos. Sin compromiso, sin llamadas incómodas.
+            Te enseñamos cómo funcionaría realmente con tu negocio:
+            sencillo, rápido y sin complicaciones.
           </p>
-          <a
-            href={`https://wa.me/${WA_NUMBER}?text=${WA_TEXT}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <span className="btn btn--primary btn--wa">
-              <WhatsAppIcon size={20} />
-              Quiero mi automatización
-            </span>
-          </a>
+          <div className="cta-final__actions">
+            <Link to="/demo" className="btn btn--primary cta-final__btn">
+              Pide tu demo
+            </Link>
+            <a
+              href={`https://wa.me/${WA_NUMBER}?text=${WA_TEXT}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span className="btn btn--outline cta-final__btn">
+                <WhatsAppIcon size={20} />
+                Escríbenos por WhatsApp
+              </span>
+            </a>
+          </div>
         </div>
       </section>
     </>

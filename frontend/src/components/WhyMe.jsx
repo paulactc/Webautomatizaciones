@@ -1,4 +1,4 @@
-import { Euro, Clock, Headphones, Puzzle, ShieldCheck, Lock, Database, ArrowRight } from "lucide-react";
+import { Euro, Clock, Unlock, Headphones, Puzzle, ShieldCheck, Lock, Database, ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
 
 const reasons = [
@@ -9,8 +9,13 @@ const reasons = [
   },
   {
     icon: Clock,
-    title: "Activo en 5-7 días",
+    title: "Activo en 7-10 días",
     desc: "No meses de desarrollo. Tu automatización está funcionando en menos de una semana.",
+  },
+  {
+    icon: Unlock,
+    title: "Sin permanencia",
+    desc: "Sin cláusulas de permanencia. Cancelas la cuota mensual cuando quieras, avisando con 15 días.",
   },
   {
     icon: Headphones,

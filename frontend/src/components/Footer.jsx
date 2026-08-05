@@ -26,7 +26,7 @@ export default function Footer() {
             <p className="footer__nav-title">Empresa</p>
             <Link to="/servicios" className="footer__nav-link">Servicios</Link>
             <Link to="/blog" className="footer__nav-link">Blog</Link>
-            <Link to="/demo" className="footer__nav-link">Demo de 20 min</Link>
+            <Link to="/demo" className="footer__nav-link">Pide tu demo</Link>
             <Link to="/calculadora-ahorro" className="footer__nav-link">Potencial de ahorro</Link>
             <Link to="/sobre-mi" className="footer__nav-link">Sobre mí</Link>
           </div>

@@ -25,10 +25,17 @@ export default function Navbar() {
   function handleClick(to) {
     setOpen(false);
     const [path, hash] = to.split("#");
-    if (hash && location.pathname === (path || "/")) {
+    const targetPath = path || "/";
+
+    if (hash && location.pathname === targetPath) {
       const el = document.getElementById(hash);
       if (el) return void el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
+
+    if (location.pathname === targetPath && !hash) {
+      return void window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
     navigate(to);
   }
 

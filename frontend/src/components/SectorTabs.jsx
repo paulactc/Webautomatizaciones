@@ -103,7 +103,7 @@ export default function SectorTabs() {
         <div className="sector-tabs__maintenance">
           <Sparkles size={18} strokeWidth={1.5} />
           <span>
-            Todo incluido en tu pack con <strong>mantenimiento mensual por solo 30€/mes</strong> — 
+            Todo incluido en tu pack con <strong>mantenimiento mensual desde 50€/mes</strong> — 
             agente IA siempre actualizado, ajustes sin coste y soporte en 24h.
           </span>
         </div>

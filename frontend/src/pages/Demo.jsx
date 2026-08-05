@@ -3,7 +3,7 @@ import { Send, CheckCircle2, MessageCircle } from "lucide-react";
 import WhatsAppIcon from "../components/icons/WhatsAppIcon.jsx";
 
 const WA_NUMBER = "34600000000";
-const WA_TEXT = encodeURIComponent("Hola, quiero una demo de 20 min. ¿Cuándo podemos hablar?");
+const WA_TEXT = encodeURIComponent("Hola, quiero ver cómo funcionaría con mi negocio. ¿Cuándo podemos hablar?");
 
 const SECTORS = [
   "Clínica / salud",
@@ -58,7 +58,7 @@ export default function Demo() {
   return (
     <section className="page-section">
       <div className="container container--narrow">
-        <h2 className="section-title">Pide tu demo de 20 minutos</h2>
+        <h2 className="section-title">Te enseñamos cómo quedaría con tu negocio</h2>
         <p className="section-subtitle">
           Sin compromiso y sin email obligatorio. Te enseñamos ejemplos de cómo funcionaría con tu negocio.
         </p>

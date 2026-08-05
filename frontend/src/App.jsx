@@ -1,4 +1,5 @@
-import { Routes, Route, Navigate } from "react-router";
+import { useEffect } from "react";
+import { Routes, Route, Navigate, useLocation } from "react-router";
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
 import WhatsAppButton from "./components/WhatsAppButton.jsx";
@@ -14,9 +15,24 @@ import BlogPost from "./pages/BlogPost.jsx";
 import Testimonios from "./pages/Testimonios.jsx";
 import Legal from "./pages/Legal.jsx";
 
+function ScrollManager() {
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      const el = document.getElementById(hash.slice(1));
+      if (el) return void el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    window.scrollTo(0, 0);
+  }, [pathname, hash]);
+
+  return null;
+}
+
 export default function App() {
   return (
     <div className="app">
+      <ScrollManager />
       <Navbar />
       <main>
         <Routes>
