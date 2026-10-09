@@ -3,8 +3,7 @@ import { Link } from "react-router";
 import { BlurFade } from "../components/magicui/blur-fade.jsx";
 import WhatsAppIcon from "../components/icons/WhatsAppIcon.jsx";
 import HeroChatMock from "../components/HeroChatMock.jsx";
-import SectorTabs from "../components/SectorTabs.jsx";
-import Pricing from "../components/Pricing.jsx";
+// import Pricing from "../components/Pricing.jsx";
 import Process from "../components/Process.jsx";
 import Faq from "../components/Faq.jsx";
 import CrmShowcase from "../components/CrmShowcase.jsx";
@@ -72,8 +71,6 @@ export default function Home() {
 
             <BlurFade delay={0.6} inView>
               <div className="hero__pills">
-                <span className="hero__pill">Precio cerrado</span>
-                <span className="hero__pill">Activo en 7-10 días</span>
                 <span className="hero__pill">Sin permanencia</span>
               </div>
             </BlurFade>
@@ -86,9 +83,6 @@ export default function Home() {
           )}
         </div>
       </section>
-
-      {/* ── Confían en mí ── */}
-      <ClientLogos />
 
       {/* ── CRM visual ── */}
       <CrmShowcase />
@@ -110,24 +104,6 @@ export default function Home() {
           </p>
         </div>
       </section>
-
-      {/* ── Sectores ── */}
-      <SectorTabs />
-
-      {/* ── Planes ── */}
-      <Pricing />
-
-      {/* ── Cómo funciona ── */}
-      <Process />
-
-      {/* ── Qué hace el agente ── */}
-      <AgentFeatures />
-
-      {/* ── Por qué elegirme ── */}
-      <WhyMe />
-
-      {/* ── FAQ ── */}
-      <Faq />
 
       {/* ── CTA final ── */}
       <section className="cta-final">
@@ -157,6 +133,24 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ── Planes ── */}
+      {/* <Pricing /> */}
+
+      {/* ── Cómo funciona ── */}
+      <Process />
+
+      {/* ── Qué hace el agente ── */}
+      <AgentFeatures />
+
+      {/* ── Por qué elegirme ── */}
+      <WhyMe />
+
+      {/* ── FAQ ── */}
+      <Faq />
+
+      {/* ── Confían en mí ── */}
+      <ClientLogos />
     </>
   );
 }

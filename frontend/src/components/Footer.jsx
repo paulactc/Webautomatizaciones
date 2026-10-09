@@ -18,7 +18,7 @@ export default function Footer() {
             <p className="footer__brand-legal">
               Paula Castillo Toldos (autónoma) · Cádiz, España
               <br />
-              NIF: [pendiente de rellenar]
+              NIF: 47231882W
             </p>
           </div>
 

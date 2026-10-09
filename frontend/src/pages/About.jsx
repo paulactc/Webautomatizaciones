@@ -1,4 +1,4 @@
-import { Code, Brain, Smartphone, Cloud, MapPin, Mail, Phone } from "lucide-react";
+import { Code, Brain, Smartphone, Cloud, Target, MapPin, Mail, Phone } from "lucide-react";
 import { Link } from "react-router";
 
 const services = [
@@ -6,6 +6,7 @@ const services = [
   { icon: Brain, text: "Automatización con IA para negocios (flujos, respuestas, clasificación)" },
   { icon: Smartphone, text: "Agentes de IA en WhatsApp (atención al cliente 24/7)" },
   { icon: Cloud, text: "Backoffice y paneles de gestión personalizados" },
+  { icon: Target, text: "CRM de leads conectado a campañas de Meta Ads, con métricas de resultados" },
 ];
 
 export default function About() {

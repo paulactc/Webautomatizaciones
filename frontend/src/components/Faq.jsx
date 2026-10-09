@@ -20,11 +20,11 @@ const faqs = [
   },
   {
     q: "¿Cuánto tarda en estar funcionando?",
-    a: "Entre 5 y 7 días hábiles desde que damos el visto bueno. Empezamos con una reunión para entender tu negocio y en menos de una semana ya está todo operativo.",
+    a: "Depende de la complejidad de tu negocio, pero trabajamos rápido: empezamos con una reunión para entender cómo funcionas y en poco tiempo ya está todo operativo.",
   },
   {
     q: "¿Qué incluye cada pack?",
-    a: "El Pack Base (500 €) incluye panel de gestiones, calendario de citas automático, respuestas a preguntas frecuentes e integración con WhatsApp. El Pack Avanzado (850 €) añade base de datos de clientes con historial y segmentación para campañas. Si necesitas algo más completo, el Pack a Medida se adapta a ti. La página web son 250 € adicionales en cualquier pack.",
+    a: "El Pack Base incluye panel de gestiones, calendario de citas automático, respuestas a preguntas frecuentes e integración con WhatsApp. El Pack Avanzado añade base de datos de clientes con historial y segmentación para campañas. Si necesitas algo más completo, el Pack a Medida se adapta a ti. Te enviamos el presupuesto según tu caso, con la opción de añadir página web en cualquier pack.",
   },
   {
     q: "¿Qué pasa si tengo dudas después de la implementación?",

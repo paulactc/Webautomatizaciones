@@ -9,18 +9,19 @@ const SYSTEM_PROMPT = `Eres el asistente virtual de Automatiza.ia, servicio de a
 Sobre Automatiza.ia:
 - Automatizamos la atención al cliente y la gestión de citas con inteligencia artificial
 - Ofrecemos CRM, agentes de IA para WhatsApp, respuestas automáticas y seguimiento de clientes
+- También conectamos leads de campañas de Meta Ads (Facebook e Instagram) a un CRM propio, con base de datos de clientes potenciales y métricas de resultados
 - Trabajamos con peluquerías, clínicas, talleres, inmobiliarias, academias y cualquier pyme o autónomo
-- Packs cerrados desde 500€ + 50€/mes, sin sorpresas ni permanencia
+- Packs adaptados a cada negocio, con presupuesto claro y sin permanencia
 
 Planes:
-- Pack Base (500€ + 50€/mes): CRM + agente de citas + respuestas frecuentes
-- Pack Avanzado (850€ + 75€/mes): Todo lo del Base + agente IA personalizado + automatización de presupuestos
-- Pack a Medida (desde 1.200€): Automatización completa a medida
-- Página web opcional: +250€ en cualquier pack
+- Pack Base: CRM + agente de citas + respuestas frecuentes
+- Pack Avanzado: Todo lo del Base + agente IA personalizado + automatización de presupuestos
+- Pack a Medida: Automatización completa adaptada a tu caso
+- Página web opcional en cualquier pack
 
 Cómo funciona:
 1. Hablamos (llamada o WhatsApp gratuito)
-2. Lo montamos (implementación en 3-5 días)
+2. Lo montamos (implementación rápida)
 3. Tu negocio trabaja solo
 
 Responde siempre en español, de forma amigable y concisa (máximo 3-4 frases por respuesta).
@@ -29,7 +30,7 @@ REGLAS PARA CAPTAR LEADS:
 - Cuando el visitante muestre interés concreto (pregunta por precio, plazos, cómo empezar, si automatizamos X cosa específica, o pide presupuesto), pídele amablemente su nombre y email o teléfono.
 - Solo pide los datos UNA vez. Si ya los tiene, no los vuelvas a pedir.
 - Cuando tengas nombre Y (email o teléfono), usa la herramienta register_lead para registrar el lead. Antes de llamarla, confirma con el usuario: "¿Quieres que te contactemos?".
-- No inventes precios específicos para sectores. Usa la herramienta get_plans si te preguntan por precios detallados.`;
+- No inventes precios. Usa la herramienta get_plans si te preguntan por precios o planes detallados, y si piden una cifra exacta explica que se envía un presupuesto personalizado tras conocer su caso.`;
 
 const tools = [
   {
@@ -106,12 +107,12 @@ async function callGroq(messages, opts = {}) {
 function getPlanInfo() {
   return {
     planes: [
-      { nombre: "Pack Base", precio: "500€ + 50€/mes", incluye: "CRM + agente de citas + respuestas frecuentes" },
-      { nombre: "Pack Avanzado", precio: "850€ + 75€/mes", incluye: "Todo lo del Base + agente IA personalizado + automatización de presupuestos" },
-      { nombre: "Pack a Medida", precio: "desde 1.200€", incluye: "Automatización completa a medida" },
+      { nombre: "Pack Base", precio: "Presupuesto a medida", incluye: "CRM + agente de citas + respuestas frecuentes" },
+      { nombre: "Pack Avanzado", precio: "Presupuesto a medida", incluye: "Todo lo del Base + agente IA personalizado + automatización de presupuestos" },
+      { nombre: "Pack a Medida", precio: "A medida", incluye: "Automatización completa adaptada a tu caso" },
     ],
-    web_opcional: "+250€ en cualquier pack",
-    como_funciona: ["1. Hablamos (llamada o WhatsApp gratuito)", "2. Lo montamos (implementación en 3-5 días)", "3. Tu negocio trabaja solo"],
+    web_opcional: "Disponible como opción adicional en cualquier pack",
+    como_funciona: ["1. Hablamos (llamada o WhatsApp gratuito)", "2. Lo montamos (implementación rápida)", "3. Tu negocio trabaja solo"],
   };
 }
 

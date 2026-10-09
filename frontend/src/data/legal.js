@@ -9,8 +9,8 @@ export const legalDocs = [
         body: [
           "En cumplimiento del artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), se informa de los datos identificativos del titular de esta web:",
           "Titular: Paula Castillo Toldos (profesional autónoma)",
-          "NIF: [PENDIENTE DE RELLENAR]",
-          "Domicilio: Cádiz, España",
+          "NIF: 47231882W",
+          "Domicilio: C/ Delicias, 20, 11130 Chiclana de la Frontera, Cádiz",
           "Correo electrónico: paulact39@gmail.com",
           "Actividad: desarrollo web y automatización de la atención al cliente con inteligencia artificial (marca comercial \"Coworker IA\").",
         ],

@@ -167,13 +167,12 @@ function KanbanCard({ contact }) {
         )}
       </div>
 
-      <div className="flex items-center justify-between gap-2 px-3 py-2 border-t border-slate-100 text-sm">
-        <div className="flex items-center gap-1.5 text-slate-600 min-w-0">
+      <div className="flex items-center justify-between gap-2 px-3 py-2 border-t border-slate-100 text-sm flex-wrap">
+        <div className="flex items-center gap-1.5 text-slate-600 whitespace-nowrap">
           <Users size={14} className="text-slate-400 shrink-0" />
-          <span>{totalPersonas} pers.</span>
-          <span className="text-slate-400">({contact.adultos || 0}a {contact.ninos || 0}n)</span>
+          <span>{totalPersonas} pers. <span className="text-slate-400">({contact.adultos || 0}a {contact.ninos || 0}n)</span></span>
         </div>
-        <div className="flex items-center gap-2 shrink-0">
+        <div className="flex items-center gap-2 whitespace-nowrap">
           {activa && (
             <span className="text-[11px] font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded uppercase">
               Activa
@@ -195,12 +194,12 @@ function KanbanColumn({ status, contacts }) {
   const colors = columnColors[status];
 
   return (
-    <div className={cn("flex flex-col flex-1 min-w-[280px] max-w-[340px] bg-slate-50 border border-slate-200 rounded-[10px] overflow-hidden")}>
-      <div className={cn("flex items-center justify-between gap-2 px-4 py-3 bg-white border-b border-slate-200 border-t-4", colors.top)}>
-        <h3 className="text-[0.82rem] font-extrabold uppercase tracking-[0.04em] text-slate-900 whitespace-nowrap">
+    <div className={cn("flex flex-col flex-1 min-w-[230px] max-w-[270px] bg-slate-50 border border-slate-200 rounded-[10px] overflow-hidden")}>
+      <div className={cn("flex items-center justify-between gap-2 px-3.5 py-3 bg-white border-b border-slate-200 border-t-4", colors.top)}>
+        <h3 className="text-[0.76rem] font-extrabold uppercase tracking-[0.03em] text-slate-900 leading-tight min-w-0">
           {statusLabels[status]}
         </h3>
-        <span className={cn("text-base font-black text-white px-2.5 py-0.5 rounded-full min-w-[28px] text-center leading-6", colors.count)}>
+        <span className={cn("text-sm font-black text-white w-6 h-6 rounded-full shrink-0 flex items-center justify-center", colors.count)}>
           {contacts.length}
         </span>
       </div>
@@ -219,7 +218,7 @@ function KanbanColumn({ status, contacts }) {
 
 export default function CrmKanbanShowcase() {
   return (
-    <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+    <div className="bg-white">
       <div className="flex items-center justify-between px-5 py-4 border-b border-slate-200 bg-white">
         <div className="flex items-center gap-3 min-w-0">
           <span className="w-9 h-9 rounded-lg bg-blue-600 flex items-center justify-center text-white shrink-0">
@@ -227,7 +226,7 @@ export default function CrmKanbanShowcase() {
           </span>
           <div className="min-w-0">
             <div className="text-base font-semibold text-slate-900 leading-tight">Gestiones del agente</div>
-            <div className="text-xs text-slate-500 leading-snug">La IA resuelve lo que puede y te deja lo que necesita tu criterio</div>
+            <div className="text-xs text-slate-500 leading-snug truncate">La IA resuelve lo que puede y te deja lo que necesita tu criterio</div>
           </div>
         </div>
         <span className="text-xs font-medium text-blue-700 bg-blue-50 px-2.5 py-1 rounded shrink-0 hidden sm:inline">

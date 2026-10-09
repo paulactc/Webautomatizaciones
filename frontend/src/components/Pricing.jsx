@@ -4,8 +4,8 @@ import { Link } from "react-router";
 const plans = [
   {
     name: "Pack Base",
-    price: "500 €",
-    monthly: "Desde 50 €/mes",
+    price: "Presupuesto a medida",
+    monthly: "Incluye mantenimiento mensual",
     highlight: false,
     features: [
       "Panel de gestiones realizadas",
@@ -16,8 +16,8 @@ const plans = [
   },
   {
     name: "Pack Avanzado",
-    price: "850 €",
-    monthly: "Desde 75 €/mes",
+    price: "Presupuesto a medida",
+    monthly: "Incluye mantenimiento mensual",
     highlight: true,
     features: [
       "Todo lo del Pack Base",
@@ -44,7 +44,7 @@ export default function Pricing() {
       <div className="container">
         <h2 className="section-title">Planes y precios</h2>
         <p className="section-subtitle">
-          Packs cerrados, sin sorpresas. Empiezas por 500 € y creces cuando tu negocio lo necesite.
+          Planes adaptados a tu negocio. Te mandamos un presupuesto claro tras conocer tu caso.
         </p>
 
         <div className="pricing__grid">
@@ -77,7 +77,7 @@ export default function Pricing() {
           ))}
         </div>
 
-        <p className="pricing__note">Página web: +250 € <span class="pricing-card__iva">+IVA</span> opcional, en cualquier pack.</p>
+        <p className="pricing__note">Página web disponible como opción adicional en cualquier pack.</p>
       </div>
     </section>
   );

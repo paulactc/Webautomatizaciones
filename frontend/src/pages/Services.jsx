@@ -1,4 +1,4 @@
-import { Globe, Bot, MessageCircle, Layout } from "lucide-react";
+import { Globe, Bot, MessageCircle, Layout, Target } from "lucide-react";
 
 const services = [
   {
@@ -25,6 +25,12 @@ const services = [
     description:
       "Herramientas internas a medida para que tú y tu equipo gestionéis el negocio desde una sola pantalla: estados, clientes, notificaciones y control total.",
   },
+  {
+    icon: Target,
+    title: "CRM de leads para campañas en Meta",
+    description:
+      "Conectamos tus campañas de Facebook e Instagram Ads a un CRM propio: cada lead entra automáticamente, sin perderse, con base de datos centralizada y métricas de resultados para hacer seguimiento a tus futuros clientes y medir qué campañas convierten.",
+  },
 ];
 
 export default function Services() {
@@ -33,7 +39,7 @@ export default function Services() {
       <div className="container">
         <h2 className="section-title">Servicios</h2>
         <p className="section-subtitle">
-          Páginas web y automatización con IA para negocios que quieren trabajar mejor.
+          Páginas web, agentes de IA y CRM para captar más clientes y no perder ninguno.
         </p>
         <div className="services__grid">
           {services.map(({ icon: Icon, title, description }) => (

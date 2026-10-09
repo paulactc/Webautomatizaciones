@@ -158,8 +158,8 @@ export default function CalendarShowcase() {
               <div
                 key={d}
                 className={cn(
-                  "px-1 md:px-2 py-1.5 md:py-2 text-center font-bold uppercase tracking-wider text-gray-600 bg-gradient-to-b border-b-2 border-transparent text-[10px] md:text-[13px]",
-                  ["from-blue-500/10 to-blue-500/5", "from-emerald-500/10 to-emerald-500/5", "from-amber-500/10 to-amber-500/5", "from-violet-500/10 to-violet-500/5", "from-rose-500/10 to-rose-500/5", "from-cyan-500/15 to-cyan-500/5", "from-orange-500/15 to-orange-500/5"][i]
+                  "px-1 md:px-2 py-1.5 md:py-2 text-center font-bold uppercase tracking-wider text-[10px] md:text-[13px] bg-violet-50/60 text-violet-700",
+                  i >= 5 && "text-violet-400"
                 )}
               >
                 {d}
@@ -180,7 +180,7 @@ export default function CalendarShowcase() {
                   }}
                   className={cn(
                     "border-b border-r border-gray-200 p-1 flex flex-col min-h-[46px] md:min-h-[108px] cursor-default transition-colors",
-                    isTarget && "ring-2 ring-violet-400 ring-inset z-10"
+                    isTarget && "ring-2 ring-violet-400 ring-inset bg-violet-50/40 z-10"
                   )}
                 >
                   <div className="flex items-center justify-center mb-1 shrink-0">
@@ -200,15 +200,16 @@ export default function CalendarShowcase() {
                       const ev = dayEventsHere[0];
                       const st = SERVICIOS[ev.servicioId] || DEFAULT_STYLE;
                       return (
-                        <div className={cn("px-1.5 py-1 border-l-[4px] leading-snug border", st.bar, st.bg)}>
+                        <div className={cn("px-1.5 py-1 border-l-[4px] leading-snug border rounded-r-md", st.bar, st.bg)}>
                           <div className="flex items-start justify-between gap-1">
-                            <span className="font-bold text-gray-800 text-[11px]">{ev.pet}</span>
-                            <div className="flex items-center gap-1 shrink-0">
-                              <span className={cn("font-bold text-[10px]", st.label)}>{st.abbr}</span>
-                              <span className="text-gray-400 text-[10px]">{ev.time}</span>
-                            </div>
+                            <span className="font-bold text-gray-800 text-[11px] truncate">{ev.pet}</span>
+                            <span className="text-gray-400 text-[10px] shrink-0">{ev.time}</span>
                           </div>
-                          <div className="text-gray-500 text-[10px] mt-0.5">{ev.owner}</div>
+                          <div className="flex items-center gap-1 mt-0.5">
+                            <span className={cn("w-1.5 h-1.5 rounded-full shrink-0", st.dot)} />
+                            <span className={cn("font-bold text-[10px] truncate", st.label)}>{st.name}</span>
+                          </div>
+                          <div className="text-gray-500 text-[10px] mt-0.5 truncate">{ev.owner}</div>
                           <div className="flex flex-wrap items-center gap-x-1 text-gray-400 text-[10px]">
                             <span className="shrink-0">📞 {ev.phone}</span>
                             <span>{ev.motivo}</span>
@@ -219,15 +220,15 @@ export default function CalendarShowcase() {
                       dayEventsHere.slice(0, 2).map((ev) => {
                         const st = SERVICIOS[ev.servicioId] || DEFAULT_STYLE;
                         return (
-                          <div key={`${ev.day}-${ev.time}`} className={cn("px-1.5 py-1 border-l-[3px] leading-tight border-b", st.bar, st.bg)}>
+                          <div key={`${ev.day}-${ev.time}`} className={cn("px-1.5 py-1 border-l-[3px] leading-tight rounded-r-md mb-1", st.bar, st.bg)}>
                             <div className="flex items-start justify-between gap-1">
-                              <span className="font-semibold text-gray-800 text-[11px]">{ev.pet}</span>
-                              <div className="flex items-center gap-1 shrink-0">
-                                <span className={cn("font-bold text-[10px]", st.label)}>{st.abbr}</span>
-                                <span className="text-gray-400 text-[10px]">{ev.time}</span>
-                              </div>
+                              <span className="font-semibold text-gray-800 text-[11px] truncate">{ev.pet}</span>
+                              <span className="text-gray-400 text-[10px] shrink-0">{ev.time}</span>
                             </div>
-                            <div className="text-gray-400 text-[10px]">{ev.owner}</div>
+                            <div className="flex items-center gap-1 mt-0.5">
+                              <span className={cn("w-1.5 h-1.5 rounded-full shrink-0", st.dot)} />
+                              <span className={cn("font-bold text-[10px] truncate", st.label)}>{st.name}</span>
+                            </div>
                           </div>
                         );
                       })

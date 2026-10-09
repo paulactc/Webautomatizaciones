@@ -165,8 +165,8 @@ export const posts = [
         imgAlt: "Calculadora sobre dinero",
         imgCaption: "Setup, cuota mensual y costes de terceros: tres bloques, cada uno transparente.",
         list: [
-          "Setup inicial: la puesta en marcha. Configurar los flujos, redactar los textos con tu tono, conectar tu agenda y CRM. En Coworker IA los packs parten de 500 € + IVA, con un precio cerrado que apruebas antes de empezar.",
-          "Cuota mensual: mantenimiento, revisiones y soporte continuo. Desde 50 €/mes + IVA, para que tu automatización siga funcionando y evolucione con tu negocio.",
+          "Setup inicial: la puesta en marcha. Configurar los flujos, redactar los textos con tu tono, conectar tu agenda y CRM. En Coworker IA te damos un presupuesto claro que apruebas antes de empezar.",
+          "Cuota mensual: mantenimiento, revisiones y soporte continuo, para que tu automatización siga funcionando y evolucione con tu negocio.",
           "Costes de terceros: los mensajes de WhatsApp Business API los cobra Meta según consumo real, y el proveedor de IA cobra por uso. Son costes transparentes, a precio de mercado, nunca inflados.",
         ],
       },
@@ -194,7 +194,7 @@ export const posts = [
       },
       {
         h: "Sin permanencia ni sorpresas",
-        p: "Nuestro modelo es simple: precio cerrado en el setup, cuota mensual clara y costes de terceros a coste real. Sin permanencias, sin comisiones de setup ocultas. Y si algo no te encaja, cancelas la cuota mensual avisando con 15 días.",
+        p: "Nuestro modelo es simple: presupuesto claro en el setup, cuota mensual transparente y costes de terceros a coste real. Sin permanencias, sin comisiones de setup ocultas. Y si algo no te encaja, cancelas la cuota mensual avisando con 15 días.",
       },
     ],
   },

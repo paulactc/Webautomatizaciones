@@ -1,17 +1,7 @@
-import { Euro, Clock, Unlock, Headphones, Puzzle, ShieldCheck, Lock, Database, ArrowRight } from "lucide-react";
+import { Unlock, Headphones, Puzzle, ShieldCheck, Lock, Database, ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
 
 const reasons = [
-  {
-    icon: Euro,
-    title: "Precio cerrado, sin sorpresas",
-    desc: "Sabes exactamente cuánto vas a pagar desde el primer día. Sin horas extra, sin letra pequeña.",
-  },
-  {
-    icon: Clock,
-    title: "Activo en 7-10 días",
-    desc: "No meses de desarrollo. Tu automatización está funcionando en menos de una semana.",
-  },
   {
     icon: Unlock,
     title: "Sin permanencia",

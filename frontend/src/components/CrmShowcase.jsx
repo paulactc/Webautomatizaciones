@@ -22,13 +22,6 @@ export default function CrmShowcase() {
   return (
     <section className="crm-showcase">
       <div className="container">
-        <h2 className="section-title crm-showcase__title">
-          Un sistema que crece contigo
-        </h2>
-        <p className="section-subtitle crm-showcase__subtitle">
-          Empieza por lo que necesitas hoy y construye mucho más mañana.
-        </p>
-
         <div className="crm-showcase__carousel">
           <button className="crm-showcase__arrow crm-showcase__arrow--left" onClick={() => scroll(-1)} aria-label="Anterior">
             <ChevronLeft size={24} />

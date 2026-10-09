@@ -48,11 +48,6 @@ export default function AgentFeatures() {
             </motion.article>
           ))}
         </div>
-
-        <p className="agent-features__note">
-          Todo incluido en tu pack con mantenimiento mensual desde 50€/mes — agente IA
-          siempre actualizado, ajustes sin coste y soporte en 24h.
-        </p>
       </div>
     </section>
   );
